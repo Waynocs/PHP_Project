@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 19 oct. 2020 à 16:34
+-- Généré le : mar. 20 oct. 2020 à 01:37
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.11
 
@@ -28,13 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `editor` (
-  `id_editor` int(11) NOT NULL,
-  `name` varchar(64) NOT NULL,
-  `surname` varchar(64) NOT NULL,
-  `mail` varchar(256) NOT NULL,
-  `pass` varchar(64) NOT NULL,
-  `bio` text NOT NULL
+  `id_editor` int(6) NOT NULL,
+  `surname` varchar(32) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `mail_address` varchar(128) NOT NULL,
+  `password` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `editor`
+--
+
+INSERT INTO `editor` (`id_editor`, `surname`, `name`, `mail_address`, `password`) VALUES
+(3, 'Schmitt', 'miaou', 'miaouschmitt@gmail.com', '$2y$10$ctkoeGT8tlbGa2KcfKUH8edFlUVa0ryXkAiN.3GEqGAL/c6LALpde');
 
 -- --------------------------------------------------------
 
@@ -45,11 +51,19 @@ CREATE TABLE `editor` (
 CREATE TABLE `news` (
   `id_news` int(11) NOT NULL,
   `id_theme` int(11) NOT NULL,
-  `title` varchar(32) NOT NULL,
-  `date` date NOT NULL,
-  `text` text NOT NULL,
+  `title_news` varchar(100) NOT NULL,
+  `date_news` datetime NOT NULL,
+  `text_news` text NOT NULL,
   `id_editor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `news`
+--
+
+INSERT INTO `news` (`id_news`, `id_theme`, `title_news`, `date_news`, `text_news`, `id_editor`) VALUES
+(4, 1, 'Chute en Skateboard', '2020-10-20 00:30:25', 'Il chute malheureusement de son toit (heureusement pour mon blog)', 3),
+(5, 3, 'Surf', '2020-10-20 00:31:07', 'Il glisse de son surf lors d\'une attaque de requins', 3);
 
 -- --------------------------------------------------------
 
@@ -59,9 +73,17 @@ CREATE TABLE `news` (
 
 CREATE TABLE `theme` (
   `id_theme` int(11) NOT NULL,
-  `description` text NOT NULL,
-  `hue` int(3) NOT NULL
+  `description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `theme`
+--
+
+INSERT INTO `theme` (`id_theme`, `description`) VALUES
+(1, 'Skate'),
+(2, 'Snowboard'),
+(3, 'Wakeboard');
 
 --
 -- Index pour les tables déchargées
@@ -77,9 +99,7 @@ ALTER TABLE `editor`
 -- Index pour la table `news`
 --
 ALTER TABLE `news`
-  ADD PRIMARY KEY (`id_news`),
-  ADD KEY `id_editor` (`id_editor`),
-  ADD KEY `id_theme` (`id_theme`);
+  ADD PRIMARY KEY (`id_news`);
 
 --
 -- Index pour la table `theme`
@@ -95,30 +115,19 @@ ALTER TABLE `theme`
 -- AUTO_INCREMENT pour la table `editor`
 --
 ALTER TABLE `editor`
-  MODIFY `id_editor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_editor` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `theme`
 --
 ALTER TABLE `theme`
-  MODIFY `id_theme` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `news`
---
-ALTER TABLE `news`
-  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`id_editor`) REFERENCES `editor` (`id_editor`),
-  ADD CONSTRAINT `news_ibfk_2` FOREIGN KEY (`id_theme`) REFERENCES `theme` (`id_theme`);
+  MODIFY `id_theme` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

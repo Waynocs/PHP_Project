@@ -1,7 +1,7 @@
 <?php
-include 'class/connection.php';
+include 'php/connection.php';
 
-include 'inc/header.php';
+include 'php/header.php';
 
 ?>
 
@@ -11,7 +11,7 @@ include 'inc/header.php';
 <body>
 
     <?php
-    include 'inc/menu.php';
+    include 'php/menu.php';
     ?>
 
 </body>

@@ -32,7 +32,7 @@ if (isset($_POST["ecrire"])) { //Si bouton "ecrire" utilisé, on rempli la condi
 <head>
 
     <meta charset=\"UTF-8\" />
-    <title> Compte test </title>
+    <title> Compte </title>
     <link rel="stylesheet" href="../css/compte.css">
 </head>
 

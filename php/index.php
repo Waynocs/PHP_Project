@@ -13,7 +13,7 @@ $bdd = App::getDatabase(); //récupération de la BdD
 
 <head>
     <meta charset=\"UTF-8\" />
-    <title> Page connexion </title>
+    <title> Accueil | News </title>
 </head>
 
 <body>

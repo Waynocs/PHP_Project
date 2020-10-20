@@ -63,6 +63,9 @@ if (isset($_POST["ecrire"])) { //Si bouton "ecrire" utilisé, on rempli la condi
     <h1> Compte </h1>
     <h2> Bonjour <?= $_SESSION["auth"]->name; ?>, bienvenue sur votre espace compte </h2><br />
 
+    <h3>Vous possedez votre compte depuis : <?=
+                                                date("d/m/y H:i:s", strtotime($_SESSION["auth"]->dateCreate)); ?></h3>
+
     <h3> possibilité de poster des news : </h3>
     <?php $reqThemes = $bdd->query("SELECT * FROM theme"); ?>
 

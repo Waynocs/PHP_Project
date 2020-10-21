@@ -11,8 +11,16 @@ header {
 
 h1 {
     text-align: center;
+    text-decoration: underline;
+}
+
+h2 {
+    text-align: center;
+    text-decoration: underline;
 
 }
+
+
 
 h1 a {
     text-decoration: none;
@@ -55,4 +63,8 @@ nav {
 .moncompte a {
     text-decoration: none;
     color: white;
+}
+
+#article {
+    display: block;
 }

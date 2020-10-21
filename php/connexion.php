@@ -69,37 +69,48 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
 <html lang=\"fr\">
 
 <head>
+    <link type="text/css" rel="stylesheet" href="../css/connexion.css">
     <meta charset=\"UTF-8\" />
     <title> Page connexion </title>
 </head>
 
 <body>
+    <header>
+
+        <h1> <a href="connexion.php"> Connexion/Inscription</a> </h1>
+
+    </header>
     <nav>
-        <p><a href="index.php">Les news</a></p>
+        <p><button class="news"><a href="index.php">Les news</a></button></p>
     </nav>
 
-    <form method="POST">
-        <h1> S'inscrire: </h1>
-        <label for="prenomInscription"> Prénom : </label>
-        <input type="text" name="prenomInscription" minlenght="4" maxlenght="16" placeholder="Prénom" <?php if (isset($_POST['prenomInscription'])) : ?> value="<?= $_POST['prenomInscription']; ?>" <?php endif; ?>> <br />
-        <label for="nomInscription"> Nom : </label>
-        <input type="text" name="nomInscription" minlenght="4" maxlenght="16" placeholder="Nom" <?php if (isset($_POST['nomInscription'])) : ?> value="<?= $_POST['nomInscription']; ?>" <?php endif; ?>> <br />
-        <label for="mailInscription"> Adresse-mail : </label>
-        <input type="text" name="mailInscription" minlenght="4" maxlenght="16" placeholder="Adresse-mail" <?php if (isset($_POST['mailInscription'])) : ?> value="<?= $_POST['mailInscription']; ?>" <?php endif; ?>> <br />
-        <label for="mdpInscription"> Mot de passe : </label>
-        <input type="password" name="mdpInscription" placeholder="mot de passe" <?php if (isset($_POST['mdpInscription'])) : ?> value="<?= $_POST['mdpInscription']; ?>" <?php endif; ?>><br />
-        <label for="mdpConfirmerInscription"> Confirmer Mot de passe : </label>
-        <input type="password" name="mdpConfirmerInscription" placeholder="confirmation mot de passe" <?php if (isset($_POST['mdpConfirmerInscription'])) : ?> value="<?= $_POST['mdpConfirmerInscription']; ?>" <?php endif; ?>>
-        <input type="submit" name="inscription" value="S'inscrire">
-    </form>
-
-    <form method="POST">
-        <h1> Se connecter: </h1>
-        <label for="mailConnexion"> Adresse mail : </label>
-        <input type="text" name="mailConnexion" minlenght="4" maxlenght="16" placeholder="Adresse-mail" <?php if (isset($_POST['mailConnexion'])) : ?> value="<?= $_POST['mailConnexion']; ?>" <?php endif; ?>> <br />
-        <label for="mdpConnexion"> Mot de passe : </label>
-        <input type="password" name="mdpConnexion" placeholder="mot de passe" <?php if (isset($_POST['mdpConexxion'])) : ?> value="<?= $_POST['mdpConexxion']; ?>" <?php endif; ?>>
-        <input type="submit" name="connexion" value="Se connecter">
+    <div id="inscription">
+        <form method="POST">
+            <h2> S'inscrire : </h2>
+            <label for="prenomInscription"> Prénom : </label>
+            <input type="text" name="prenomInscription" minlenght="4" maxlenght="16" placeholder="Prénom" <?php if (isset($_POST['prenomInscription'])) : ?> value="<?= $_POST['prenomInscription']; ?>" <?php endif; ?>> <br /><br />
+            <label for="nomInscription"> Nom : </label>
+            <input type="text" name="nomInscription" minlenght="4" maxlenght="16" placeholder="Nom" <?php if (isset($_POST['nomInscription'])) : ?> value="<?= $_POST['nomInscription']; ?>" <?php endif; ?>> <br /><br />
+            <label for="mailInscription"> Adresse-mail : </label>
+            <input type="text" name="mailInscription" minlenght="4" maxlenght="16" placeholder="Adresse-mail" <?php if (isset($_POST['mailInscription'])) : ?> value="<?= $_POST['mailInscription']; ?>" <?php endif; ?>> <br /><br />
+            <label for="mdpInscription"> Mot de passe : </label>
+            <input type="password" name="mdpInscription" placeholder="mot de passe" <?php if (isset($_POST['mdpInscription'])) : ?> value="<?= $_POST['mdpInscription']; ?>" <?php endif; ?>><br /><br />
+            <label for="mdpConfirmerInscription"> Confirmer Mot de passe : </label>
+            <input type="password" name="mdpConfirmerInscription" placeholder="confirmation mot de passe" <?php if (isset($_POST['mdpConfirmerInscription'])) : ?> value="<?= $_POST['mdpConfirmerInscription']; ?>" <?php endif; ?>>
+            <br /><br />
+            <input type="submit" name="inscription" value="S'inscrire">
+        </form>
+    </div>
+    <br /><br />
+    <div id="connexion">
+        <form method="POST">
+            <h2> Se connecter : </h2>
+            <label for="mailConnexion"> Adresse mail : </label>
+            <input type="text" name="mailConnexion" minlenght="4" maxlenght="16" placeholder="Adresse-mail" <?php if (isset($_POST['mailConnexion'])) : ?> value="<?= $_POST['mailConnexion']; ?>" <?php endif; ?>> <br /><br />
+            <label for="mdpConnexion"> Mot de passe : </label>
+            <input type="password" name="mdpConnexion" placeholder="mot de passe" <?php if (isset($_POST['mdpConexxion'])) : ?> value="<?= $_POST['mdpConexxion']; ?>" <?php endif; ?>><br /><br />
+            <input type="submit" name="connexion" value="Se connecter">
+    </div>
     </form><br><br>
 
 </body>

@@ -37,8 +37,18 @@ if (isset($_POST["ecrire"])) { //Si bouton "ecrire" utilisé, on rempli la condi
 </head>
 
 <body>
+    <header>
+
+        <h1> <a href="compte.php">Compte</a> </h1>
+
+    </header>
     <nav>
-        <p><a href="index.php">Les news</a></p>
+        <div class="button-align">
+            <p><button class="news"><a href="index.php">Les news</a></button></p>
+        </div>
+        <div class="button-align">
+            <p><button class="deconnexion"><a href="?deco"> Se déconnecter </a></button></p>
+        </div>
     </nav>
 
     <?php if (isset($_GET["deco"])) : ?>
@@ -60,30 +70,33 @@ if (isset($_POST["ecrire"])) { //Si bouton "ecrire" utilisé, on rempli la condi
 
 
 
-    <h1> Compte </h1>
-    <h2> Bonjour <?= $_SESSION["auth"]->name; ?>, bienvenue sur votre espace compte </h2><br />
+    <div id="center">
+        <h2> Bonjour <?= $_SESSION["auth"]->name; ?>, bienvenue sur votre espace compte </h2><br />
 
-    <h3>Vous possedez votre compte depuis : <?=
-                                                date("d/m/y H:i:s", strtotime($_SESSION["auth"]->dateCreate)); ?></h3>
+        <h3>Vous possedez votre compte depuis le : <?=
+                                                        date("d/m/y H:i:s", strtotime($_SESSION["auth"]->dateCreate)); ?></h3>
+    </div>
+    <br /><br />
+    <div id="postArticle">
+        <h3> possibilité de poster des news : </h3><br />
+        <?php $reqThemes = $bdd->query("SELECT * FROM theme"); ?>
 
-    <h3> possibilité de poster des news : </h3>
-    <?php $reqThemes = $bdd->query("SELECT * FROM theme"); ?>
-
-    <form method="POST">
-        <label for="titre"> Le titre de votre article : </label> <!-- Label relié au champs input par le for de label et le name de input-->
-        <input type="text" name="titre" placeholder="Le titre" /><br> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
-        <select name="theme">
-            <?php foreach ($reqThemes as $reqTheme) : ?>
-                <option value="<?= $reqTheme->id_theme ?>">
-                    <?= $reqTheme->description ?>
-                </option>
-            <?php endforeach; ?>
-        </select><br>
-        <label for="contenu"> Le contenu de votre article : </label><br> <!-- Label relié au champs textarea par le for de label et le name de input-->
-        <textarea name="contenu" placeholder="Le contenu" rows="10" cols="50"></textarea><br> <!-- name = contenu pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
-        <input type="submit" name="ecrire" value="Écrire" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
-    </form>
-    <p><a href="?deco"> Se déconnecter </a></p> <!-- redirection vers la page deconnexion.php pour pouvoir deconnecter l'utilisateur -->
+        <form method="POST">
+            <label for="titre"> Le titre de votre article : </label> <!-- Label relié au champs input par le for de label et le name de input-->
+            <input type="text" name="titre" placeholder="Le titre" /><br><br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
+            <label for="theme"> Le theme : </label>
+            <select name="theme">
+                <?php foreach ($reqThemes as $reqTheme) : ?>
+                    <option value="<?= $reqTheme->id_theme ?>">
+                        <?= $reqTheme->description ?>
+                    </option>
+                <?php endforeach; ?>
+            </select><br /><br />
+            <label for="description"> description de votre article : </label><br /><br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
+            <textarea name="description" placeholder="La description" rows="10" cols="50"></textarea><br /><br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
+            <input type="submit" name="envoyer" value="Envoyer" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
+        </form>
+    </div>
 </body>
 
 </html>

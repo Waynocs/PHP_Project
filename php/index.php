@@ -12,13 +12,21 @@ $bdd = App::getDatabase(); //récupération de la BdD
 <html lang=\"fr\">
 
 <head>
+    <link type="text/css" rel="stylesheet" href="../css/index.css">
     <meta charset=\"UTF-8\" />
     <title> Accueil | News </title>
+
 </head>
 
 <body>
+    <header>
+
+        <h1> <a href="index.php"> Divers nouvelles</a> </h1>
+
+    </header>
+
     <nav>
-        <p><?php if ($auth->user()) : ?><a href="compte.php">Mon compte</a> <?php else : ?><a href="connexion.php">Se connecter</a><?php endif; ?></p>
+        <p><?php if ($auth->user()) : ?><button class="buttoncompte"><a href="compte.php">Mon compte</a></button> <?php else : ?><button class="moncompte"><a href="connexion.php">Se connecter</a></button><?php endif; ?></p>
     </nav>
     <h2> Visualisation de tous les news : </h2>
 

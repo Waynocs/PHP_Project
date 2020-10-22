@@ -65,6 +65,22 @@ nav {
     color: white;
 }
 
-#article {
-    display: block;
+#articles {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 100px auto;
+
+
+}
+
+.article {
+    width: 300px;
+
+    margin: -40px auto 100px auto;
+    padding: 30px;
+    padding-left: 3%;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: #7D7D7D;
+
 }

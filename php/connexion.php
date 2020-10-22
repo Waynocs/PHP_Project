@@ -69,6 +69,7 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
 <html lang=\"fr\">
 
 <head>
+    <link type="text/css" rel="stylesheet" href="../css/commun.css">
     <link type="text/css" rel="stylesheet" href="../css/connexion.css">
     <meta charset=\"UTF-8\" />
     <title> Page connexion </title>
@@ -81,7 +82,7 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
 
     </header>
     <nav>
-        <p><button class="news"><a href="index.php">Les news</a></button></p>
+        <p><a href="index.php"><button>Les news</button></a></p>
     </nav>
 
     <div id="inscription">
@@ -111,8 +112,8 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
             <input type="password" name="mdpConnexion" placeholder="mot de passe" <?php if (isset($_POST['mdpConexxion'])) : ?> value="<?= $_POST['mdpConexxion']; ?>" <?php endif; ?>><br /><br />
             <input type="submit" name="connexion" value="Se connecter">
     </div>
-    </form><br><br>
+    </form><br /><br />
 
-</body>
-
-</html>
+    <?php
+    include 'inc/footer.php';
+    ?>

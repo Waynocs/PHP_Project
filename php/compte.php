@@ -33,7 +33,9 @@ if (isset($_POST["ecrire"])) { //Si bouton "ecrire" utilisé, on rempli la condi
 
     <meta charset=\"UTF-8\" />
     <title> Compte </title>
+    <link rel="stylesheet" href="../css/commun.css">
     <link rel="stylesheet" href="../css/compte.css">
+
 </head>
 
 <body>
@@ -44,10 +46,10 @@ if (isset($_POST["ecrire"])) { //Si bouton "ecrire" utilisé, on rempli la condi
     </header>
     <nav>
         <div class="button-align">
-            <p><button class="news"><a href="index.php">Les news</a></button></p>
+            <p><a href="index.php"><button class="news">Les news</button></a></p>
         </div>
         <div class="button-align">
-            <p><button class="deconnexion"><a href="?deco"> Se déconnecter </a></button></p>
+            <p><a href="?deco"><button class="deconnexion"> Deconnexion </button></a></p>
         </div>
     </nav>
 
@@ -92,11 +94,13 @@ if (isset($_POST["ecrire"])) { //Si bouton "ecrire" utilisé, on rempli la condi
                     </option>
                 <?php endforeach; ?>
             </select><br /><br />
-            <label for="description"> description de votre article : </label><br /><br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
-            <textarea name="description" placeholder="La description" rows="10" cols="50"></textarea><br /><br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
-            <input type="submit" name="envoyer" value="Envoyer" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
+            <label for="contenu"> description de votre article : </label><br /><br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
+            <textarea name="contenu" placeholder="La description" rows="10" cols="50"></textarea><br /><br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
+            <input type="submit" name="ecrire" value="Envoyer" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
         </form>
     </div>
-</body>
+    <br /><br />
 
-</html>
+    <?php
+    include 'inc/footer.php';
+    ?>

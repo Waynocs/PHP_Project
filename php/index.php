@@ -48,11 +48,11 @@ $bdd = App::getDatabase(); //récupération de la BdD
 
                 <div class="article">
                     <!-- < ?= signifie : < ?php echo -->
-                    <p> <strong>L'auteur : </strong><?= $reqEditor->surname, " ", $reqEditor->name; ?> <?php if ($auth->user()) : ?> <a href="mailto: <?= $reqEditor->mail_address; ?>"><?= $reqEditor->mail_address; ?></a> <?php endif; ?> </p> <br /><!-- affiche le mail si connecté en plus de nom + prénom, sinon non-->
-                    <p> <strong>Le titre : </strong><?= $reqNew->title_news; ?> </p> <br /><!-- On affiche par un echo le titre de l'index reqNew-->
-                    <p> <strong>Le theme : </strong><?= $reqTheme->description ?> </p> <br /><!-- On affiche par un echo le theme de l'index reqNew-->
-                    <p> <strong>Le contenu : </strong><?= $reqNew->text_news; ?> </p> <br /><!-- On affiche par un echo le contenu de l'index reqNew-->
-                    <p> <strong>La date : </strong><?= date("d/m/y H:i:s", strtotime($reqNew->date_news)); ?> </p><br /> <!-- On affiche par un echo la date de l'index reqNew -->
+                    <p> <strong><u>L'auteur</u> : </strong><?= $reqEditor->surname, " ", $reqEditor->name; ?> <?php if ($auth->user()) : ?> <a href="mailto: <?= $reqEditor->mail_address; ?>"><?= $reqEditor->mail_address; ?></a> <?php endif; ?> </p> <br /><!-- affiche le mail si connecté en plus de nom + prénom, sinon non-->
+                    <p> <strong><u>Le titre</u> : </strong><?= $reqNew->title_news; ?> </p> <br /><!-- On affiche par un echo le titre de l'index reqNew-->
+                    <p> <strong><u>Le theme</u> : </strong><?= $reqTheme->description ?> </p> <br /><!-- On affiche par un echo le theme de l'index reqNew-->
+                    <p> <strong><u>Le contenu</u> : </strong><?= $reqNew->text_news; ?> </p> <br /><!-- On affiche par un echo le contenu de l'index reqNew-->
+                    <p> <strong><u>La date</u> : </strong><?= date("d/m/y H:i:s", strtotime($reqNew->date_news)); ?> </p><br /> <!-- On affiche par un echo la date de l'index reqNew -->
                 </div>
 
             <?php

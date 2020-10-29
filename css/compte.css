@@ -44,12 +44,44 @@ nav {
     padding: 1%;
 }
 
+#newsThemeLangue {
+    display: flex;
+    width: 50%;
+    margin: 20px auto 50px auto;
+}
+
+#newsThemeLangue p {
+    margin: auto;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
+#newsThemeLangue #news {
+    text-decoration: underline;
+}
 
 #postArticle {
+    text-align: center;
+}
+
+#postTheme {
+    text-align: center;
+}
+
+#postLangue {
     text-align: center;
 }
 
 
 #center {
     text-align: center;
+}
+
+@media all and (max-width: 1080px) {
+    #deco {
+        width: 40%;
+        height: 40%;
+        left: 30%;
+        top: 30%;
+    }
 }

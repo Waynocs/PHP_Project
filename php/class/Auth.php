@@ -51,7 +51,7 @@ class Auth
 
     public function user() //lis l'Auth
     {
-        if (!$this->session->read('auth')) //Appel de la fonction Read de paramètre Ath de la Class session, retourne false si !session
+        if (!$this->session->read('auth')) //Appel de la fonction Read de paramètre Auth de la Class session, retourne false si !session
             return false;
 
         return $this->session->read('auth');

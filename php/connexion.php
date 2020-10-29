@@ -4,6 +4,8 @@ include 'class/Auth.php';
 include 'class/Session.php';
 include 'class/Database.php';
 
+$session = new Session();
+
 $auth = App::getAuth(); //recupere l'Auth
 $bdd = App::getDatabase(); //Récupere la bdd 
 
@@ -71,6 +73,7 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
 <head>
     <link type="text/css" rel="stylesheet" href="../css/commun.css">
     <link type="text/css" rel="stylesheet" href="../css/connexion.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset=\"UTF-8\" />
     <title> Page connexion </title>
 </head>
@@ -117,3 +120,8 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
     <?php
     include 'inc/footer.php';
     ?>
+
+
+</body>
+
+</html>

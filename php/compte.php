@@ -72,11 +72,11 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
 
 ?>
 
-<html lang=\"fr\">
+<html lang="fr">
 
 <head>
 
-    <meta charset=\"UTF-8\" />
+    <meta charset="UTF-8" />
     <title> Compte </title>
     <link rel="stylesheet" href="../css/commun.css">
     <link rel="stylesheet" href="../css/compte.css">

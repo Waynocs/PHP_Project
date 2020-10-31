@@ -1,7 +1,7 @@
 <?php
-include 'class/App.php';
-include 'class/Auth.php';
-include 'class/Session.php';
+include_once 'class/App.php';
+include_once 'class/Auth.php';
+include_once 'class/Session.php';
 
 $session = new Session();
 App::getAuth()->logout(); //Appel de la fonction logout de la class Auth

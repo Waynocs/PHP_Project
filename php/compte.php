@@ -1,8 +1,8 @@
 <?php
-include 'class/App.php';
-include 'class/Auth.php';
-include 'class/Session.php';
-include 'class/Database.php';
+include_once 'class/App.php';
+include_once 'class/Auth.php';
+include_once 'class/Session.php';
+include_once 'class/Database.php';
 
 $auth = App::getAuth(); //Récupération de l'Auth
 $bdd = App::getDatabase(); //récupération de la BdD
@@ -179,7 +179,7 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
     </div>
 
     <?php
-    include 'inc/footer.php';
+    include_once 'inc/footer.php';
     ?>
 
     <script src="scripts/toggle.js"></script>

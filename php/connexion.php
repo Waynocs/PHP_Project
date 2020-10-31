@@ -1,8 +1,8 @@
 <?php
-include 'class/App.php';
-include 'class/Auth.php';
-include 'class/Session.php';
-include 'class/Database.php';
+include_once 'class/App.php';
+include_once 'class/Auth.php';
+include_once 'class/Session.php';
+include_once 'class/Database.php';
 
 $session = new Session();
 
@@ -118,7 +118,7 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
     </form><br /><br />
 
     <?php
-    include 'inc/footer.php';
+    include_once 'inc/footer.php';
     ?>
 
 

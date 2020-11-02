@@ -77,7 +77,9 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
 <head>
 
     <meta charset="UTF-8" />
-    <title> Compte </title>
+    <title>
+        Compte
+    </title>
     <link rel="stylesheet" href="../css/commun.css">
     <link rel="stylesheet" href="../css/compte.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,15 +89,31 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
 <body>
     <header>
 
-        <h1> <a href="compte.php">Compte</a> </h1>
+        <h1>
+            <a href="compte.php">
+                Compte
+            </a>
+        </h1>
 
     </header>
     <nav>
         <div class="button-align">
-            <p><a href="index.php"><button class="news">Les news</button></a></p>
+            <p>
+                <a href="index.php">
+                    <button class="news">
+                        Les news
+                    </button>
+                </a>
+            </p>
         </div>
         <div class="button-align">
-            <p><a href="?deco"><button class="deconnexion"> Deconnexion </button></a></p>
+            <p>
+                <a href="?deco">
+                    <button class="deconnexion">
+                        Deconnexion
+                    </button>
+                </a>
+            </p>
         </div>
     </nav>
 
@@ -110,69 +128,125 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
     <?php $reqLangues = $bdd->query("SELECT * FROM langue"); ?>
 
     <div id="center">
-        <h2> Bonjour <?= $_SESSION["auth"]->name; ?>, bienvenue sur votre espace compte </h2><br />
+        <h2>
+            Bonjour <?= $_SESSION["auth"]->name; ?>, bienvenue sur votre espace compte
+        </h2>
+        <br />
 
-        <h3>Vous possedez votre compte depuis le : <?= date("d/m/y H:i:s", strtotime($_SESSION["auth"]->dateCreate)); ?></h3>
+        <h3>
+            Vous possedez votre compte depuis le : <?= date("d/m/y H:i:s", strtotime($_SESSION["auth"]->dateCreate)); ?>
+        </h3>
     </div>
-    <br /><br />
+    <br />
+    <br />
 
     <div id="newsThemeLangue">
-        <p id="news">Ecrire des news</p>
-        <p id="theme">Ecrire un theme</p>
-        <p id="langue">Ecrire une langue</p>
+        <p id="news">
+            Ecrire des news
+        </p>
+        <p id="theme">
+            Ecrire un theme
+        </p>
+        <p id="langue">
+            Ecrire une langue
+        </p>
     </div>
 
     <div id="postArticle">
-        <h3> possibilité de poster des news : </h3><br />
+        <h3>
+            possibilité de poster des news :
+        </h3>
+        <br />
 
         <form method="POST">
-            <label for="titreArticle"> Le titre de votre article : </label> <!-- Label relié au champs input par le for de label et le name de input-->
-            <input type="text" name="titreArticle" placeholder="Le titre" /><br><br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
-            <label for="themeArticle"> Le theme : </label>
+            <label for="titreArticle">
+                Le titre de votre article :
+            </label> <!-- Label relié au champs input par le for de label et le name de input-->
+            <input type="text" name="titreArticle" placeholder="Le titre" />
+            <br />
+            <br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
+            <label for="themeArticle">
+                Le theme :
+            </label>
             <select name="themeArticle">
                 <?php foreach ($reqThemes as $reqTheme) : ?>
                     <option title="Description : <?= $reqTheme->description; ?>" value="<?= $reqTheme->id_theme ?>">
                         <?= $reqTheme->title ?>
                     </option>
                 <?php endforeach; ?>
-            </select><br /><br />
-
-            <label for="langueArticle"> La langue : </label>
+            </select>
+            <br />
+            <br />
+            <label for="langueArticle">
+                La langue :
+            </label>
             <select name="langueArticle">
                 <?php foreach ($reqLangues as $reqLangue) : ?>
                     <option value="<?= $reqLangue->id_langue ?>">
                         <?= $reqLangue->title ?>
                     </option>
                 <?php endforeach; ?>
-            </select><br /><br />
+            </select>
+            <br />
+            <br />
 
-            <label for="contenuArticle"> description de votre article : </label><br /><br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
-            <textarea name="contenuArticle" placeholder="La description" rows="10" cols="50"></textarea><br /><br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
+            <label for="contenuArticle">
+                description de votre article :
+            </label>
+            <br />
+            <br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
+            <textarea name="contenuArticle" placeholder="La description" rows="10" cols="50">
+
+            </textarea>
+            <br />
+            <br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
             <input type="submit" name="ecrireArticle" value="Envoyer" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
         </form>
 
     </div>
 
     <div id="postTheme">
-        <h3> possibilité de poster des themes : </h3><br />
+        <h3>
+            possibilité de poster des themes :
+        </h3>
+        <br />
 
         <form method="POST">
-            <label for="titreTheme"> Le titre de votre theme : </label> <!-- Label relié au champs input par le for de label et le name de input-->
-            <input type="text" name="titreTheme" placeholder="Le titre" /><br><br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
+            <label for="titreTheme">
+                Le titre de votre theme :
+            </label> <!-- Label relié au champs input par le for de label et le name de input-->
+            <input type="text" name="titreTheme" placeholder="Le titre" />
+            <br />
+            <br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
 
-            <label for="descriptionTheme"> description de votre article : </label><br /><br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
-            <textarea name="descriptionTheme" placeholder="La description" rows="10" cols="50"></textarea><br /><br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
+            <label for="descriptionTheme">
+                Description de votre article :
+            </label>
+            <br />
+            <br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
+            <textarea name="descriptionTheme" placeholder="La description" rows="10" cols="50">
+
+            </textarea>
+            <br />
+            <br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
             <input type="submit" name="ecrireTheme" value="Envoyer" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
         </form>
     </div>
 
     <div id="postLangue">
-        <h3> possibilité de poster des langues : </h3><br />
+        <h3>
+            possibilité de poster des langues :
+        </h3>
+        <br />
 
 
         <form method="POST">
-            <label for="titleLangue"> La langue : </label> <!-- Label relié au champs input par le for de label et le name de input-->
-            <input type="text" name="titleLangue" placeholder="Le titre de la langue" /><br><br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
+            <label for="titleLangue">
+                La langue :
+            </label> <!-- Label relié au champs input par le for de label et le name de input-->
+            <input type="text" name="titleLangue" placeholder="Le titre de la langue" />
+            <br />
+            <br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
             <input type="submit" name="ecrireLangue" value="Envoyer" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
         </form>
 

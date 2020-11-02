@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+*:not(.main-title *) {
+    font-family: 'Roboto Slab', serif;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: black;
+    padding: 2em;
+    margin: 0;
+}
+
+h2 {
+    text-align: center;
+    text-decoration: underline;
+
+}
+
+.main-title,
+.main-title * {
+    font-weight: lighter;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.main-title::first-letter {
+    color: var(--main-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+
+nav {
+    background-color: #181818;
+    margin: 0;
+}
+
+nav>div {
+    margin: 0 10%;
+    text-align: right;
+}
+
+nav .button {
+    display: inline-block;
+    padding: .75em .5em;
+    margin: 0 0 .5em 0;
+    border: var(--main-color) 1px solid;
+    color: white;
+    background-color: black;
+    font-weight: lighter;
+    transition: border .2s;
+    transition: background-color .2s;
+}
+
+nav .button:hover {
+    border: white 1px solid;
+    background-color: var(--main-color);
+    transition: border .2s;
+    transition: background-color .2s;
+}
+
+#articles {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 100px auto;
+
+
+}
+
+.article {
+    width: 300px;
+
+    margin: -40px auto 100px auto;
+    padding: 30px;
+    padding-left: 3%;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: #7D7D7D;
+    word-break: break-word;
+
+}

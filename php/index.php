@@ -40,6 +40,7 @@ if (isset($_POST["theme"]))
             --main-color: <?= "orange" ?>;
         }
     </style>
+    <link type="text/css" rel="stylesheet" href="../css/index.css">
     <link type="text/css" rel="stylesheet" href="../css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
@@ -103,6 +104,9 @@ if (isset($_POST["theme"]))
         </select>
         <input type="submit" name="langue">
     </form>
+    <div id="or">
+    <p>OU</p>
+    </div>
 
     <form method="POST">
         <label for="themeArticle">

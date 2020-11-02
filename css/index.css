@@ -1,3 +1,4 @@
+/* 
 * {
     margin: 0px;
     padding: 0px;
@@ -84,4 +85,9 @@ nav {
     background-color: #7D7D7D;
     word-break: break-word;
 
+}
+*/
+
+#or p {
+    padding-left: 10%;
 }

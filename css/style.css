@@ -129,7 +129,6 @@ nav .button:hover {
 }
 
 .flash {
-    position: fixed;
     border: solid var(--themed-color) 1px;
     padding: 1rem;
 }

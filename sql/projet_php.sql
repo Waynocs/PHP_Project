@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 31 oct. 2020 à 10:37
--- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Hôte : 127.0.0.1
+-- Généré le : mer. 04 nov. 2020 à 00:28
+-- Version du serveur :  10.4.14-MariaDB
+-- Version de PHP : 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `projet_php`
+-- Base de données : `projet_php`
 --
 
 -- --------------------------------------------------------
@@ -28,16 +27,22 @@ SET time_zone = "+00:00";
 -- Structure de la table `editor`
 --
 
-DROP TABLE IF EXISTS `editor`;
-CREATE TABLE IF NOT EXISTS `editor` (
-  `id_editor` int(6) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `editor` (
+  `id_editor` int(6) NOT NULL,
   `surname` varchar(32) NOT NULL,
   `name` varchar(32) NOT NULL,
   `mail_address` varchar(128) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `dateCreate` datetime NOT NULL,
-  PRIMARY KEY (`id_editor`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `dateCreate` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `editor`
+--
+
+INSERT INTO `editor` (`id_editor`, `surname`, `name`, `mail_address`, `password`, `dateCreate`) VALUES
+(6, 'SERANO', 'Waian', 'waynocserano@gmail.com', '$2y$10$GRj9MZH.ZcE0C.VMzUszZe88vCx/wU0aSaLzuRQNwx/p.jJXtUsYS', '2020-11-02 09:43:37'),
+(7, 'GROSIO', 'Aurelien', 'aureliengrosio@free.fr', '$2y$10$A.ol9PE62E1W38tWrQ13y.UaKIeF/cZKKGOMyXuAn6Y2Z.Y2/e1WS', '2020-11-02 09:47:05');
 
 -- --------------------------------------------------------
 
@@ -45,12 +50,18 @@ CREATE TABLE IF NOT EXISTS `editor` (
 -- Structure de la table `langue`
 --
 
-DROP TABLE IF EXISTS `langue`;
-CREATE TABLE IF NOT EXISTS `langue` (
-  `id_langue` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_langue`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `langue` (
+  `id_langue` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `langue`
+--
+
+INSERT INTO `langue` (`id_langue`, `title`) VALUES
+(15, 'Fran&ccedil;ais'),
+(16, 'Anglais');
 
 -- --------------------------------------------------------
 
@@ -58,17 +69,25 @@ CREATE TABLE IF NOT EXISTS `langue` (
 -- Structure de la table `news`
 --
 
-DROP TABLE IF EXISTS `news`;
-CREATE TABLE IF NOT EXISTS `news` (
-  `id_news` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `news` (
+  `id_news` int(11) NOT NULL,
   `id_theme` int(11) NOT NULL,
   `id_langue` int(11) NOT NULL,
+  `visibility` tinyint(4) NOT NULL,
   `title_news` varchar(100) NOT NULL,
   `date_news` datetime NOT NULL,
   `text_news` text NOT NULL,
-  `id_editor` int(11) NOT NULL,
-  PRIMARY KEY (`id_news`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+  `id_editor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `news`
+--
+
+INSERT INTO `news` (`id_news`, `id_theme`, `id_langue`, `visibility`, `title_news`, `date_news`, `text_news`, `id_editor`) VALUES
+(28, 14, 15, 0, 'qsdsqd', '2020-11-03 19:12:53', '\r\n            qsff', 6),
+(30, 14, 15, 1, 'Mort en surf', '2020-11-03 23:08:25', '\r\n            QSVQ', 6),
+(36, 15, 16, 1, 'zevds', '2020-11-04 00:24:24', '\r\n            sdvsdv', 6);
 
 -- --------------------------------------------------------
 
@@ -76,13 +95,75 @@ CREATE TABLE IF NOT EXISTS `news` (
 -- Structure de la table `theme`
 --
 
-DROP TABLE IF EXISTS `theme`;
-CREATE TABLE IF NOT EXISTS `theme` (
-  `id_theme` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `theme` (
+  `id_theme` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
-  PRIMARY KEY (`id_theme`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `theme`
+--
+
+INSERT INTO `theme` (`id_theme`, `title`, `description`) VALUES
+(14, 'Math&eacute;matiques', 'Les math&eacute;matiques (ou la math&eacute;matique) sont un ensemble de connaissances abstraites r&eacute;sultant de raisonnements logiques appliqu&eacute;s &agrave; des objets divers tels que les ensembles math&eacute;matiques, les nombres, les formes, les structures, les transformations, etc.'),
+(15, 'Fran&ccedil;ais', 'Le fran&ccedil;ais est une langue indo-europ&eacute;enne de la famille des langues romanes.');
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `editor`
+--
+ALTER TABLE `editor`
+  ADD PRIMARY KEY (`id_editor`);
+
+--
+-- Index pour la table `langue`
+--
+ALTER TABLE `langue`
+  ADD PRIMARY KEY (`id_langue`);
+
+--
+-- Index pour la table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id_news`);
+
+--
+-- Index pour la table `theme`
+--
+ALTER TABLE `theme`
+  ADD PRIMARY KEY (`id_theme`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `editor`
+--
+ALTER TABLE `editor`
+  MODIFY `id_editor` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `langue`
+--
+ALTER TABLE `langue`
+  MODIFY `id_langue` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT pour la table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT pour la table `theme`
+--
+ALTER TABLE `theme`
+  MODIFY `id_theme` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -22,14 +22,15 @@ if (isset($_GET["deco"])) { ?>
 
 //Introduire dans la BdD des articles
 if (isset($_POST["ecrireArticle"])) { //Si bouton "ecrire" utilisé, on rempli la condition et on rentre dans le second if
-    if (!empty($_POST['titreArticle']) && !empty($_POST['themeArticle']) && !empty($_POST['langueArticle']) && !empty($_POST['contenuArticle'])) { //Regarde si le titre ainsi que le contenu n'est pas vide
+    if (!empty($_POST['titreArticle']) && !empty($_POST['themeArticle']) && !empty($_POST['langueArticle']) && isset($_POST['visibility']) && !empty($_POST['contenuArticle'])) { //Regarde si le titre ainsi que le contenu n'est pas vide
         $titreArticle = htmlentities($_POST['titreArticle']); //htmlentities convertit tous les caractères éligibles en entités HTML
-        $contenuArticle = htmlentities($_POST['contenuArticle']);
         $themeArticle = htmlentities($_POST['themeArticle']);
         $langueArticle = htmlentities($_POST['langueArticle']);
+        $visibility = htmlentities($_POST['visibility']);
+        $contenuArticle = htmlentities($_POST['contenuArticle']);
         $id_editor = $_SESSION['auth']->id_editor;
 
-        $bdd->query("INSERT INTO news SET id_theme = ?, id_langue = ?, title_news = ?, date_news = NOW(), text_news = ?, id_editor = ?",  [$themeArticle, $langueArticle, $titreArticle, $contenuArticle, $id_editor]); //appel de la fonction query de parametre tableau titre et contenu, de la class Database.php
+        $bdd->query("INSERT INTO news SET id_theme = ?, id_langue = ?, visibility = ?, title_news = ?, date_news = NOW(), text_news = ?, id_editor = ?",  [$themeArticle, $langueArticle, $visibility, $titreArticle, $contenuArticle, $id_editor]); //appel de la fonction query de parametre tableau titre et contenu, de la class Database.php
 
         $session->write('flash', "<p style='color: green;'> L'article à bien été posté à l'adresse : <a href='index.php' title='ici'> ici </a> </p>");
         header('Location: compte.php');
@@ -187,8 +188,25 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
                     </option>
                 <?php endforeach; ?>
             </select>
+
             <br />
             <br />
+            
+            <label for="visibility">
+                Visibilité :
+            </label>
+            <select name="visibility">
+                    <option title="Public" value="1">
+                        Public
+                    </option>
+                    <option title="Privé" value="0">
+                        Privé
+                    </option>
+            </select>
+
+            <br />
+            <br />
+            
 
             <label for="contenuArticle">
                 description de votre article :

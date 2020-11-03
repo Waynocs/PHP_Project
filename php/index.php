@@ -234,6 +234,10 @@ if (isset($_POST["theme"]))
         <?php endif; ?>
 
 <!-- ---------------------------------------------------------------------------------------- -->
+
+        <h2>
+            Visualisation de tous mes news :
+        </h2>
 <?php
 if($auth->user()) :
 

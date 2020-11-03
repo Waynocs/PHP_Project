@@ -9,7 +9,7 @@ $session = new Session();
 $auth = App::getAuth(); //récupération de l'Auth
 $bdd = App::getDatabase(); //récupération de la BdD
 
-$reqThemes = $bdd->query('SELECT * FROM theme'); 
+$reqThemes = $bdd->query('SELECT * FROM theme');
 $reqLangues = $bdd->query('SELECT * FROM langue');
 $reqNews = $bdd->query('SELECT * FROM news ORDER BY date_news desc');
 
@@ -38,6 +38,16 @@ if (isset($_POST["theme"]))
     <style>
         :root {
             --main-color: <?= "orange" ?>;
+            --main-white: <?= "white" ?>;
+            --main-black: <?= "black" ?>;
+            --main-light: <?= "white" ?>;
+            --main-dark: <?= "#181818" ?>;
+            --themed-color: <?= "orange" /* todo */ ?>;
+            --themed-white: <?= "white" /* todo */ ?>;
+            --themed-black: <?= "black" /* todo */ ?>;
+            --themed-light: <?= "white" /* todo */ ?>;
+            --themed-dark: <?= "black" /* todo */ ?>;
+            --accent-color: <?= "blue" /* todo */ ?>;
         }
     </style>
     <link type="text/css" rel="stylesheet" href="../css/index.css">
@@ -91,7 +101,7 @@ if (isset($_POST["theme"]))
         <label for="langueArticle">
             Trier par langue :
         </label>
-        <select name="langueArticle">
+        <select name="langueArticle" class="button">
             <option value="0" <?php if (!isset($_POST['langueArticle'])) : ?> selected <?php endif; ?>>
                 TOUTES LES LANGUES
             </option>
@@ -102,17 +112,18 @@ if (isset($_POST["theme"]))
                 </option>
             <?php endforeach; ?>
         </select>
-        <input type="submit" name="langue">
+
+        <input class="button" type="submit" name="langue" value="Trier" />
     </form>
     <div id="or">
-    <p>OU</p>
+        <p>OU</p>
     </div>
 
     <form method="POST">
         <label for="themeArticle">
             Trier par thème :
         </label>
-        <select name="themeArticle">
+        <select name="themeArticle" class="button">
             <option value="0" <?php if (!isset($_POST['themeArticle'])) : ?> selected <?php endif; ?>>
                 TOUS LES THEMES
             </option>
@@ -123,7 +134,7 @@ if (isset($_POST["theme"]))
                 </option>
             <?php endforeach; ?>
         </select>
-        <input type="submit" name="theme">
+        <input class="button" type="submit" name="theme" value="Trier" />
     </form>
 
     <?php  //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
@@ -155,7 +166,7 @@ if (isset($_POST["theme"]))
                             </a>
                         <?php endif; ?>
                     </p>
-                   
+
                     <p>
                         <strong>
                             <u>
@@ -165,7 +176,7 @@ if (isset($_POST["theme"]))
                         </strong>
                         <?= $reqLangue->title; ?>
                     </p>
-                    
+
                     <p>
                         <strong>
                             <u>
@@ -175,7 +186,7 @@ if (isset($_POST["theme"]))
                         </strong>
                         <?= $reqNew->title_news; ?>
                     </p>
-                   
+
                     <p title="Description : <?= $reqTheme->description; ?>">
                         <strong>
                             <u>
@@ -185,7 +196,7 @@ if (isset($_POST["theme"]))
                         </strong>
                         <?= $reqTheme->title ?>
                     </p>
-                    
+
                     <p>
                         <strong>
                             <u>
@@ -195,7 +206,7 @@ if (isset($_POST["theme"]))
                         </strong>
                         <?= $reqNew->text_news; ?>
                     </p>
-                    
+
                     <p>
                         <strong>
                             <u>
@@ -207,12 +218,12 @@ if (isset($_POST["theme"]))
                     </p>
 
                     <?php if ($auth->user()) {
-                    if( $_SESSION["auth"]->id_editor == $reqNew->id_editor) { 
-                        ?> <a href="removeArticle.php?id_news=<?= $reqNew->id_news; ?> "> <button class="removeArticle">Supprimer</button></a> <?php
-                        
-                    }
-                }
-                  ?>
+                        if ($_SESSION["auth"]->id_editor == $reqNew->id_editor) {
+                    ?> <a href="removeArticle.php?id_news=<?= $reqNew->id_news; ?> "> <button class="removeArticle">Supprimer</button></a> <?php
+
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                            ?>
                 </div>
 
             <?php

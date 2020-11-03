@@ -48,6 +48,8 @@ if (isset($_POST["theme"]))
             --themed-light: <?= "white" /* todo */ ?>;
             --themed-dark: <?= "black" /* todo */ ?>;
             --accent-color: <?= "blue" /* todo */ ?>;
+            --validate-color: <?= "green" /* todo */ ?>;
+            --cancel-color: <?= "red" /* todo */ ?>;
         }
     </style>
     <link type="text/css" rel="stylesheet" href="../css/index.css">

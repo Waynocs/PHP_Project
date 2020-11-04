@@ -3,6 +3,7 @@ include_once 'class/App.php';
 include_once 'class/Auth.php';
 include_once 'class/Session.php';
 include_once 'class/Database.php';
+include_once './inc/utils.php';
 
 include("./inc/base.php");
 
@@ -37,6 +38,8 @@ if (isset($_POST["theme"]))
         include("./inc/style.php");
         foreach ($bdd->query('SELECT * FROM theme') as $theme) {
             $color = $theme->color;
+            if (darkTheme())
+                $color = getDarkThemeColor($color, "ffffff", "000000");
             echo ".theme-" . $theme->id_theme . " {\n";
             echo "border: solid 1px #$color;\n";
             echo "transition: background-color .2s;\n";

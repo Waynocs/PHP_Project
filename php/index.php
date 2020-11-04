@@ -43,10 +43,9 @@ if (isset($_POST["theme"]))
             echo ".theme-" . $theme->id_theme . " {\n";
             echo "border: solid 1px #$color;\n";
             echo "transition: background-color .2s;\n";
-            echo "pointer-events: none;\n";
             echo "}\n";
             echo ".theme-" . $theme->id_theme . ":hover {\n";
-            echo "background-color: #$color" . 30 . ";\n";
+            echo "background-color: #$color" . 10 . ";\n";
             echo "transition: background-color .2s;\n";
             echo "}\n";
             echo ".theme-" . $theme->id_theme . ":hover {\n";
@@ -54,7 +53,6 @@ if (isset($_POST["theme"]))
             echo ".theme-" . $theme->id_theme . ">a {\n";
             echo "border-bottom: solid 1px #$color;\n";
             echo "transition: background-color .2s, color .2s;\n";
-            echo "pointer-events: auto;\n";
             echo "}\n";
             echo ".theme-" . $theme->id_theme . ">a:hover {\n";
             echo "background-color: #$color;\n";
@@ -257,90 +255,96 @@ if (isset($_POST["theme"]))
                     ?>
 
 
-                        <div class="article" style="border-color: <?= "blue" /* couleur du thème de l'article */ ?>;">
-                            <!-- < ?= signifie : < ?php echo -->
-                            <p>
-                                <strong>
-                                    <u>
-                                        L'auteur
-                                    </u>
-                                    :
-                                </strong>
-                                <?= $reqMyEditor->surname, " ", $reqMyEditor->name; ?>
-                                <?php if ($auth->user()) : ?>
-                                    <a href="mailto: <?= $reqMyEditor->mail_address; ?>">
-                                        <?= $reqMyEditor->mail_address; ?>
-                                    </a>
-                                <?php endif; ?>
-                            </p>
+                        <div class="article <?= "theme-" . $reqMyTheme->id_theme ?>">
+                            <a href="">
+                                <!-- TODO lien vers l'article complet -->
+                                <h3>
+                                    <?= $reqMyNew->title_news; ?>
+                                </h3>
+                            </a>
+                            <div>
+                                <p>
+                                    <strong>
+                                        <u>
+                                            L'auteur
+                                        </u>
+                                        :
+                                    </strong>
+                                    <?= $reqMyEditor->surname, " ", $reqMyEditor->name; ?>
+                                    <?php if ($auth->user()) : ?>
+                                        <a href="mailto: <?= $reqMyEditor->mail_address; ?>">
+                                            <?= $reqMyEditor->mail_address; ?>
+                                        </a>
+                                    <?php endif; ?>
+                                </p>
 
-                            <p>
-                                <strong>
-                                    <u>
-                                        La langue
-                                    </u>
-                                    :
-                                </strong>
-                                <?= $reqMyLangue->title; ?>
-                            </p>
+                                <p>
+                                    <strong>
+                                        <u>
+                                            La langue
+                                        </u>
+                                        :
+                                    </strong>
+                                    <?= $reqMyLangue->title; ?>
+                                </p>
 
-                            <p>
-                                <strong>
-                                    <u>
-                                        Le titre
-                                    </u>
-                                    :
-                                </strong>
-                                <?= $reqMyNew->title_news; ?>
-                            </p>
+                                <p>
+                                    <strong>
+                                        <u>
+                                            Le titre
+                                        </u>
+                                        :
+                                    </strong>
+                                    <?= $reqMyNew->title_news; ?>
+                                </p>
 
-                            <p title="Description : <?= $reqMyTheme->description; ?>">
-                                <strong>
-                                    <u>
-                                        Le theme
-                                    </u>
-                                    :
-                                </strong>
-                                <?= $reqMyTheme->title ?>
-                            </p>
+                                <p title="Description : <?= $reqMyTheme->description; ?>">
+                                    <strong>
+                                        <u>
+                                            Le theme
+                                        </u>
+                                        :
+                                    </strong>
+                                    <?= $reqMyTheme->title ?>
+                                </p>
 
-                            <p>
-                                <strong>
-                                    <u>
-                                        Le contenu
-                                    </u>
-                                    :
-                                </strong>
-                                <?= $reqMyNew->text_news; ?>
-                            </p>
+                                <p>
+                                    <strong>
+                                        <u>
+                                            Le contenu
+                                        </u>
+                                        :
+                                    </strong>
+                                    <?= $reqMyNew->text_news; ?>
+                                </p>
 
-                            <p>
-                                <strong>
-                                    <u>
-                                        La date
-                                    </u>
-                                    :
-                                </strong>
-                                <?= date("d/m/y H:i:s", strtotime($reqMyNew->date_news)); ?>
-                            </p>
+                                <p>
+                                    <strong>
+                                        <u>
+                                            La date
+                                        </u>
+                                        :
+                                    </strong>
+                                    <?= date("d/m/y H:i:s", strtotime($reqMyNew->date_news)); ?>
+                                </p>
 
-                            <a href="removeArticle.php?id_news=<?= $reqMyNew->id_news; ?> "> <button class="warning button">Supprimer</button></a>
-                            <a href="changeVisibility.php?id_news=<?= $reqMyNew->id_news; ?>&visibility=<?= $reqMyNew->visibility; ?> "> <button class="info button"><?php if ($reqMyNew->visibility) : ?> Passer en privé <?php else : ?>Passer en public<?php endif; ?></button></a>
+                                <a href="removeArticle.php?id_news=<?= $reqMyNew->id_news; ?> "> <button class="warning button">Supprimer</button></a>
+                                <a href="changeVisibility.php?id_news=<?= $reqMyNew->id_news; ?>&visibility=<?= $reqMyNew->visibility; ?> "> <button class="info button"><?php if ($reqMyNew->visibility) : ?> Passer en privé <?php else : ?>Passer en public<?php endif; ?></button></a>
 
-                        </div>
+                            </div>
 
-                    <?php
+                        <?php
                     endforeach; //close foreach
+                        ?>
+                        </div>
+                    <?php
+                else :
                     ?>
-                </div>
-            <?php
-            else :
-            ?>
-                <p>
-                    Aucune news enregistrées dans la base de donnée
-                </p> <!-- Dans le cas où il n'y a pas d'article -->
-            <?php endif; ?>
-        <?php endif; ?>
+                        <p>
+                            Aucune news enregistrées dans la base de donnée
+                        </p> <!-- Dans le cas où il n'y a pas d'article -->
+                    <?php endif; ?>
+                <?php endif; ?>
 
 
 

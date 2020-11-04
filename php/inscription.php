@@ -125,7 +125,7 @@ if (isset($_POST['inscription'])) { //Si bouton inscription validé, la conditio
                 <input type="password" name="mdpConfirmerInscription" placeholder="confirmation mot de passe" <?php if (isset($_POST['mdpConfirmerInscription'])) : ?> value="<?= $_POST['mdpConfirmerInscription']; ?>" <?php endif; ?> />
                 <br />
                 <br />
-                <input type="submit" name="inscription" value="S'inscrire" />
+                <input type="submit" name="inscription" value="S'inscrire" class="button" />
                 <br />
                 <br />
                 <p>Déjà inscrit ? <a href="connexion.php">Connexion</a></p>

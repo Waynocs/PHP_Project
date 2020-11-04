@@ -36,22 +36,8 @@ if (isset($_POST["theme"]))
 
 <head>
     <style>
-        :root {
-            --main-color: <?= "orange" ?>;
-            --main-white: <?= "white" ?>;
-            --main-black: <?= "black" ?>;
-            --main-light: <?= "white" ?>;
-            --main-dark: <?= "#181818" ?>;
-            --themed-color: <?= "orange" /* todo */ ?>;
-            --themed-white: <?= "white" /* todo */ ?>;
-            --themed-black: <?= "black" /* todo */ ?>;
-            --themed-light: <?= "white" /* todo */ ?>;
-            --themed-dark: <?= "black" /* todo */ ?>;
-            --validate-color: <?= "green" /* todo */ ?>;
-            --cancel-color: <?= "red" /* todo */ ?>;
-        }
-
         <?php
+        include("./inc/style.php");
         foreach ($bdd->query('SELECT * FROM theme') as $theme) {
             $color = $theme->color;
             echo ".theme-" . $theme->id_theme . " {\n";

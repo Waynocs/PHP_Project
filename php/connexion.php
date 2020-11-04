@@ -39,20 +39,9 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
 
 <head>
     <style>
-        :root {
-            --main-color: <?= "orange" ?>;
-            --main-white: <?= "white" ?>;
-            --main-black: <?= "black" ?>;
-            --main-light: <?= "white" ?>;
-            --main-dark: <?= "#181818" ?>;
-            --themed-color: <?= "orange" /* todo */ ?>;
-            --themed-white: <?= "white" /* todo */ ?>;
-            --themed-black: <?= "black" /* todo */ ?>;
-            --themed-light: <?= "white" /* todo */ ?>;
-            --themed-dark: <?= "black" /* todo */ ?>;
-            --validate-color: <?= "green" /* todo */ ?>;
-            --cancel-color: <?= "red" /* todo */ ?>;
-        }
+        <?php
+        include("./inc/style.php");
+        ?>
     </style>
     <link type="text/css" rel="stylesheet" href="../css/style.css">
     <link type="text/css" rel="stylesheet" href="../css/connexion.css">

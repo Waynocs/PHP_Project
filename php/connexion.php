@@ -64,22 +64,10 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
 </head>
 
 <body>
-    <header>
-
-        <h1 class="main-title">
-            <a href="index.php">
-                Connexion
-            </a>
-        </h1>
-
-    </header>
-    <nav>
-        <div>
-            <a href="index.php" class="button">
-                Les news
-            </a>
-        </div>
-    </nav>
+    <?php
+    $title = "Connexion";
+    include("./inc/header.php");
+    ?>
     <?php
     if ($session->read('flash')) {
         echo $session->read('flash');

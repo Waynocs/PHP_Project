@@ -108,7 +108,7 @@ nav .button {
     background-color: var(--main-black);
     color: var(--main-white);
     padding: .75em .5em;
-    margin: 0 0 .5rem 0;
+    margin: 0 .5rem .5rem .5rem;
 }
 
 nav .button:hover {

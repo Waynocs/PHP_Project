@@ -98,29 +98,10 @@ if (isset($_POST["theme"]))
 </head>
 
 <body>
-    <header>
-
-        <h1 class="main-title">
-            <a href="index.php">
-                News
-            </a>
-        </h1>
-
-    </header>
-
-    <nav>
-        <div>
-            <?php if ($auth->user()) : ?>
-                <a href="compte.php" class="button">
-                    Mon compte
-                </a>
-            <?php else : ?>
-                <a href="connexion.php" class="button">
-                    Se connecter
-                </a>
-            <?php endif; ?>
-        </div>
-    </nav>
+    <?php
+    $title = "News";
+    include("./inc/header.php");
+    ?>
     <main>
         <?php
         if ($session->read('flash')) {

@@ -5,7 +5,7 @@ include_once 'class/Session.php';
 include_once 'class/Database.php';
 
 include("./inc/base.php");
-
+$auth->restrict(); //Appel de la fonction restrict de la class Auth qui va amener à forcer l'utilisateur à changer de page (connexion.php) si !connecté
 //Introduire dans la BdD des articles
 if (isset($_POST["ecrireArticle"])) { //Si bouton "ecrire" utilisé, on rempli la condition et on rentre dans le second if
     if (!empty($_POST['titreArticle']) && !empty($_POST['themeArticle']) && !empty($_POST['langueArticle']) && isset($_POST['visibility']) && !empty($_POST['contenuArticle'])) { //Regarde si le titre ainsi que le contenu n'est pas vide

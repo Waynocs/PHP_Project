@@ -2,7 +2,6 @@
 $auth = App::getAuth(); //Récupération de l'Auth
 $bdd = App::getDatabase(); //récupération de la BdD
 $session = new Session();
-$auth->restrict(); //Appel de la fonction restrict de la class Auth qui va amener à forcer l'utilisateur à changer de page (connexion.php) si !connecté
 if (isset($_GET["deco"])) { ?>
 
     <div id="deco">

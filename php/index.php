@@ -239,14 +239,14 @@ if (isset($_POST["theme"]))
             <h2>
                 Visualisation de tous mes news :
             </h2>
-            <hr>
+            <hr />
 
             <?php  //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
             $id_editor = $_SESSION["auth"]->id_editor;
             $reqMyNews = $bdd->query('SELECT * FROM news WHERE id_editor = ? ORDER BY date_news desc', [$id_editor]);
             if ($reqMyNews->rowCount()) : //On regarde si il y'a des articles 
             ?>
-                <div id="articles">
+                <div id="own-articles">
                     <?php
                     foreach ($reqMyNews as $reqMyNew) :  //On créé une variable clef reqNew servant d'index pour pouvoir afficher le contenu de la BdD new grâce au foreach
                         $reqMyTheme = $bdd->query("SELECT * FROM theme WHERE id_theme=?", [$reqMyNew->id_theme])->fetch(); //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
@@ -332,19 +332,18 @@ if (isset($_POST["theme"]))
                                 <a href="changeVisibility.php?id_news=<?= $reqMyNew->id_news; ?>&visibility=<?= $reqMyNew->visibility; ?> "> <button class="info button"><?php if ($reqMyNew->visibility) : ?> Passer en privé <?php else : ?>Passer en public<?php endif; ?></button></a>
 
                             </div>
-
-                        <?php
-                    endforeach; //close foreach
-                        ?>
                         </div>
                     <?php
-                else :
+                    endforeach; //close foreach
                     ?>
-                        <p>
-                            Aucune news enregistrées dans la base de donnée
-                        </p> <!-- Dans le cas où il n'y a pas d'article -->
-                    <?php endif; ?>
+                <?php
+            else :
+                ?>
+                    <p>
+                        Aucune news enregistrées dans la base de donnée
+                    </p> <!-- Dans le cas où il n'y a pas d'article -->
                 <?php endif; ?>
+            <?php endif; ?>
 
 
 

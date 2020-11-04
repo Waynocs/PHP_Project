@@ -47,10 +47,11 @@ if (isset($_POST["theme"]))
             --themed-black: <?= "black" /* todo */ ?>;
             --themed-light: <?= "white" /* todo */ ?>;
             --themed-dark: <?= "black" /* todo */ ?>;
-            --accent-color: <?= "blue" /* todo */ ?>;
             --validate-color: <?= "green" /* todo */ ?>;
             --cancel-color: <?= "red" /* todo */ ?>;
         }
+
+        /* TODO : générer des classes pour chaque thème avec leur couleur */
     </style>
     <link type="text/css" rel="stylesheet" href="../css/index.css">
     <link type="text/css" rel="stylesheet" href="../css/style.css">
@@ -153,8 +154,9 @@ if (isset($_POST["theme"]))
 
 
                     <div class="article" style="border-color: <?= "blue" /* couleur du thème de l'article */ ?>;">
+                        <!-- TODO : ajouter la classe du thème généré à l'article -->
                         <a href="" style="background-color: blue;">
-                            <!-- todo lien vers l'article complet -->
+                            <!-- TODO lien vers l'article complet -->
                             <h3>
                                 <?= $reqNew->title_news; ?>
                             </h3>

@@ -6,6 +6,13 @@
 
 * {
     font-weight: 300;
+    color: var(--themed-black);
+}
+
+input,
+textarea,
+select {
+    background-color: var(--themed-light);
 }
 
 a {
@@ -15,7 +22,7 @@ a {
 
 body {
     margin: 0;
-    background-color: var(--themed-white);
+    background-color: var(--themed-light);
 }
 
 main {

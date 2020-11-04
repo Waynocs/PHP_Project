@@ -9,7 +9,7 @@ include("./inc/base.php");
 if ($auth->user()) //appel la fonction user dans la class Auth pour savoir si l'utilisateur est deja connecté. Si oui : oblige l'utilisateur à etre redirigé par le header vers compte.php
 {
     header('Location: compte.php');
-    exit();
+    die();
 }
 
 
@@ -20,7 +20,7 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
         if ($auth->login($bdd, $mailConnexion, $mdpConnexion)) { //Appel de la fonction login de parametre bdd, pseudoConnexion et mdpConnexion dans la class Auth.php, retourne true si la connexion s'est faite, pour pouvoir rediriger l'utilisateur
             {
                 header('Location: compte.php');
-                exit();
+                die();
             }
         } else {
             echo ("<p style='color: red;'> Le mot de passe ou l'identifiant ne correspond pas. </p>");

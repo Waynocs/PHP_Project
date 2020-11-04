@@ -178,9 +178,7 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
             </label>
             <br />
             <br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
-            <textarea name="contenuArticle" placeholder="La description" rows="10" cols="50">
-
-            </textarea>
+            <textarea name="contenuArticle" placeholder="La description" rows="10" cols="50"></textarea>
             <br />
             <br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
             <input type="submit" name="ecrireArticle" value="Envoyer" class="info button" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->

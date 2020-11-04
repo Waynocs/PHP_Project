@@ -13,7 +13,7 @@ class Auth
     {
         if (!$this->session->read('auth')) { //On appel la fonction read de parametre auth de la classe session our savoir si l'utilisateur est connecté : true
             header('Location: connexion.php'); //renvoi vers connexion.php
-            exit(); //A mettre après un header
+            die(); //A mettre après un header
         }
     }
 

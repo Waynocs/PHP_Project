@@ -24,5 +24,11 @@
                 Se connecter
             </a>
         <?php endif; ?>
+        <a href="changeDarkTheme.php?url=<?= urlencode("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]") ?><?php
+                                                                                                            if (!isset($_COOKIE["dark_theme"]))
+                                                                                                                echo "&dark_theme=";
+                                                                                                            ?>" class="button">
+            Mode <?= isset($_COOKIE["dark_theme"]) ? "clair" : "sombre" ?>
+        </a>
     </div>
 </nav>

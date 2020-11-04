@@ -4,10 +4,7 @@ include_once 'class/Auth.php';
 include_once 'class/Session.php';
 include_once 'class/Database.php';
 
-$session = new Session();
-
-$auth = App::getAuth(); //récupération de l'Auth
-$bdd = App::getDatabase(); //récupération de la BdD
+include("./inc/base.php");
 
 $reqThemes = $bdd->query('SELECT * FROM theme');
 $reqLangues = $bdd->query('SELECT * FROM langue');

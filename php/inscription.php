@@ -4,10 +4,7 @@ include_once 'class/Auth.php';
 include_once 'class/Session.php';
 include_once 'class/Database.php';
 
-$session = new Session();
-
-$auth = App::getAuth(); //recupere l'Auth
-$bdd = App::getDatabase(); //Récupere la bdd 
+include("./inc/base.php");
 
 if ($auth->user()) //appel la fonction user dans la class Auth pour savoir si l'utilisateur est deja connecté. Si oui : oblige l'utilisateur à etre redirigé par le header vers compte.php
 {

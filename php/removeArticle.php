@@ -22,4 +22,4 @@ if (isset($_GET['id_news'])) {
     }
 }
 header('location:index.php');
-exit();
+die();

@@ -4,21 +4,7 @@ include_once 'class/Auth.php';
 include_once 'class/Session.php';
 include_once 'class/Database.php';
 
-$auth = App::getAuth(); //Récupération de l'Auth
-$bdd = App::getDatabase(); //récupération de la BdD
-$session = new Session();
-
-$auth->restrict(); //Appel de la fonction restrict de la class Auth qui va amener à forcer l'utilisateur à changer de page (connexion.php) si !connecté
-
-if (isset($_GET["deco"])) { ?>
-
-    <div id="deco">
-        <h3>Voulez-vous poursuivre la deconnexion ? </h3>
-        <p><a href="deconnexion.php">Oui </a></p>
-
-        <p><a href="compte.php">Non </a></p>
-    </div>
-<?php }
+include("./inc/base.php");
 
 //Introduire dans la BdD des articles
 if (isset($_POST["ecrireArticle"])) { //Si bouton "ecrire" utilisé, on rempli la condition et on rentre dans le second if

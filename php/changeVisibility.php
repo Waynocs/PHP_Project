@@ -23,4 +23,4 @@ if (isset($_GET['id_news']) && isset($_GET['visibility'])) {
     }
 }
 header('location:index.php');
-exit();
+die();

@@ -24,7 +24,6 @@ if (isset($_POST["theme"]))
 
     if (!empty($_POST['themeArticle'])) {
         $id_theme = htmlentities($_POST['themeArticle']);
-        var_dump($id_theme);
         if ($id_theme != 0)
             $reqNews = $bdd->query('SELECT * FROM news WHERE id_theme = ? AND visibility ORDER BY date_news desc', [$id_theme]);
     }
@@ -143,6 +142,7 @@ if (isset($_POST["theme"]))
 
         if ($reqNews->rowCount()) : //On regarde si il y'a des articles 
         ?>
+
             <div id="articles">
                 <?php
                 foreach ($reqNews as $reqNew) :  //On créé une variable clef reqNew servant d'index pour pouvoir afficher le contenu de la BdD new grâce au foreach
@@ -153,7 +153,7 @@ if (isset($_POST["theme"]))
 
 
                     <div class="article <?= "theme-" . $reqTheme->id_theme ?>">
-                        <a href="">
+                        <a href="detailArticle.php?id_news=<?= $reqNew->id_news; ?> ">
                             <!-- TODO lien vers l'article complet -->
                             <h3>
                                 <?= $reqNew->title_news; ?>
@@ -193,15 +193,6 @@ if (isset($_POST["theme"]))
                                 <span title="Description : <?= $reqTheme->description; ?>">
                                     <?= $reqTheme->title ?>
                                 </span>
-                            </p>
-                            <p>
-                                <strong>
-                                    <u>
-                                        Le contenu
-                                    </u>
-                                    :
-                                </strong>
-                                <?= $reqNew->text_news; ?>
                             </p>
                             <p>
                                 <strong>

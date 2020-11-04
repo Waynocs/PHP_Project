@@ -16,6 +16,9 @@
             <a href="compte.php" class="button">
                 Mon compte
             </a>
+            <a href="?deco" class="button">
+                Deconnexion
+            </a>
         <?php else : ?>
             <a href="connexion.php" class="button">
                 Se connecter

@@ -238,7 +238,7 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
             <br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
 
             <label for="descriptionTheme">
-                Description de votre article :
+                Description de votre theme :
             </label>
             <br />
             <br /> <!-- Label relié au champs textarea par le for de label et le name de input-->

@@ -81,43 +81,22 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
     <title>
         Compte
     </title>
-    <link rel="stylesheet" href="../css/commun.css">
+    <style>
+        <?php
+        include("./inc/style.php");
+        ?>
+    </style>
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/compte.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
 <body>
-    <header>
-
-        <h1>
-            <a href="compte.php">
-                Compte
-            </a>
-        </h1>
-
-    </header>
-    <nav>
-        <div class="button-align">
-            <p>
-                <a href="index.php">
-                    <button class="news">
-                        Les news
-                    </button>
-                </a>
-            </p>
-        </div>
-        <div class="button-align">
-            <p>
-                <a href="?deco">
-                    <button class="deconnexion">
-                        Deconnexion
-                    </button>
-                </a>
-            </p>
-        </div>
-    </nav>
-
+    <?php
+    $title = "Compte";
+    include("./inc/header.php");
+    ?>
     <?php
     if ($session->read('flash')) {
         echo $session->read('flash');
@@ -142,13 +121,13 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
     <br />
 
     <div id="newsThemeLangue">
-        <p id="news">
+        <p id="news" class="button">
             Ecrire des news
         </p>
-        <p id="theme">
+        <p id="theme" class="button">
             Ecrire un theme
         </p>
-        <p id="langue">
+        <p id="langue" class="button">
             Ecrire une langue
         </p>
     </div>
@@ -191,22 +170,22 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
 
             <br />
             <br />
-            
+
             <label for="visibility">
                 Visibilité :
             </label>
             <select name="visibility">
-                    <option title="Public" value="1">
-                        Public
-                    </option>
-                    <option title="Privé" value="0">
-                        Privé
-                    </option>
+                <option title="Public" value="1">
+                    Public
+                </option>
+                <option title="Privé" value="0">
+                    Privé
+                </option>
             </select>
 
             <br />
             <br />
-            
+
 
             <label for="contenuArticle">
                 description de votre article :
@@ -218,7 +197,7 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
             </textarea>
             <br />
             <br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
-            <input type="submit" name="ecrireArticle" value="Envoyer" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
+            <input type="submit" name="ecrireArticle" value="Envoyer" class="info button" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
         </form>
 
     </div>
@@ -247,7 +226,7 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
             </textarea>
             <br />
             <br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
-            <input type="submit" name="ecrireTheme" value="Envoyer" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
+            <input type="submit" name="ecrireTheme" value="Envoyer" class="info button" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
         </form>
     </div>
 
@@ -265,7 +244,7 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
             <input type="text" name="titleLangue" placeholder="Le titre de la langue" />
             <br />
             <br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
-            <input type="submit" name="ecrireLangue" value="Envoyer" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
+            <input type="submit" name="ecrireLangue" value="Envoyer" class="info button" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
         </form>
 
     </div>

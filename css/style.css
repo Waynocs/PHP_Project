@@ -10,6 +10,7 @@
 
 a {
     color: var(--themed-color);
+    text-decoration: none;
 }
 
 body {
@@ -52,10 +53,6 @@ h2 {
 
 .main-title::first-letter {
     color: var(--main-color);
-}
-
-a {
-    text-decoration: none;
 }
 
 
@@ -140,12 +137,27 @@ nav .button:hover {
 }
 
 .article {
-    width: 25%;
+    width: 30%;
     border-width: 1px;
+    /* border-top-width: 2rem; */
     border-style: solid;
     margin: 1rem auto;
-    padding: 2rem;
     background-color: var(--themed-light);
     word-break: break-word;
 
+}
+
+.article>div {
+    padding: 2rem;
+}
+
+.article>a {
+    display: block;
+    padding: 1rem 1rem;
+    color: var(--themed-white);
+}
+
+.article>a>h3 {
+    margin: 0;
+    font-size: 1.5rem;
 }

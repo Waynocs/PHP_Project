@@ -153,71 +153,66 @@ if (isset($_POST["theme"]))
 
 
                     <div class="article" style="border-color: <?= "blue" /* couleur du thème de l'article */ ?>;">
-                        <!-- < ?= signifie : < ?php echo -->
-                        <p>
-                            <strong>
-                                <u>
-                                    L'auteur
-                                </u>
-                                :
-                            </strong>
-                            <?= $reqEditor->surname, " ", $reqEditor->name; ?>
-                            <?php if ($auth->user()) : ?>
-                                <a href="mailto: <?= $reqEditor->mail_address; ?>">
-                                    <?= $reqEditor->mail_address; ?>
-                                </a>
-                            <?php endif; ?>
-                        </p>
-
-                        <p>
-                            <strong>
-                                <u>
-                                    La langue
-                                </u>
-                                :
-                            </strong>
-                            <?= $reqLangue->title; ?>
-                        </p>
-
-                        <p>
-                            <strong>
-                                <u>
-                                    Le titre
-                                </u>
-                                :
-                            </strong>
-                            <?= $reqNew->title_news; ?>
-                        </p>
-
-                        <p title="Description : <?= $reqTheme->description; ?>">
-                            <strong>
-                                <u>
-                                    Le theme
-                                </u>
-                                :
-                            </strong>
-                            <?= $reqTheme->title ?>
-                        </p>
-
-                        <p>
-                            <strong>
-                                <u>
-                                    Le contenu
-                                </u>
-                                :
-                            </strong>
-                            <?= $reqNew->text_news; ?>
-                        </p>
-
-                        <p>
-                            <strong>
-                                <u>
-                                    La date
-                                </u>
-                                :
-                            </strong>
-                            <?= date("d/m/y H:i:s", strtotime($reqNew->date_news)); ?>
-                        </p>
+                        <a href="" style="background-color: blue;">
+                            <!-- todo lien vers l'article complet -->
+                            <h3>
+                                <?= $reqNew->title_news; ?>
+                            </h3>
+                        </a>
+                        <div>
+                            <p>
+                                <strong>
+                                    <u>
+                                        L'auteur
+                                    </u>
+                                    :
+                                </strong>
+                                <?= $reqEditor->surname, " ", $reqEditor->name; ?>
+                                <?php if ($auth->user()) : ?>
+                                    <a href="mailto: <?= $reqEditor->mail_address; ?>">
+                                        <?= $reqEditor->mail_address; ?>
+                                    </a>
+                                <?php endif; ?>
+                            </p>
+                            <p>
+                                <strong>
+                                    <u>
+                                        La langue
+                                    </u>
+                                    :
+                                </strong>
+                                <?= $reqLangue->title; ?>
+                            </p>
+                            <p>
+                                <strong>
+                                    <u>
+                                        Le theme
+                                    </u>
+                                    :
+                                </strong>
+                                <span title="Description : <?= $reqTheme->description; ?>">
+                                    <?= $reqTheme->title ?>
+                                </span>
+                            </p>
+                            <p>
+                                <strong>
+                                    <u>
+                                        Le contenu
+                                    </u>
+                                    :
+                                </strong>
+                                <?= $reqNew->text_news; ?>
+                            </p>
+                            <p>
+                                <strong>
+                                    <u>
+                                        La date
+                                    </u>
+                                    :
+                                </strong>
+                                <?= date("d/m/y H:i:s", strtotime($reqNew->date_news)); ?>
+                            </p>
+                        </div>
 
                     </div>
 
@@ -233,117 +228,117 @@ if (isset($_POST["theme"]))
             </p> <!-- Dans le cas où il n'y a pas d'article -->
         <?php endif; ?>
 
-<!-- ---------------------------------------------------------------------------------------- -->
+        <!-- ---------------------------------------------------------------------------------------- -->
 
-        
-<?php
-if($auth->user()) :
 
-?>
+        <?php
+        if ($auth->user()) :
 
-        <h2>
-            Visualisation de tous mes news :
-        </h2>
-    <hr>
+        ?>
 
-    <?php  //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
-    $id_editor = $_SESSION["auth"]->id_editor;
-    $reqMyNews = $bdd->query('SELECT * FROM news WHERE id_editor = ? ORDER BY date_news desc', [$id_editor]);
-    if ($reqMyNews->rowCount()) : //On regarde si il y'a des articles 
-    ?>
-        <div id="articles">
-            <?php
-            foreach ($reqMyNews as $reqMyNew) :  //On créé une variable clef reqNew servant d'index pour pouvoir afficher le contenu de la BdD new grâce au foreach
-                $reqMyTheme = $bdd->query("SELECT * FROM theme WHERE id_theme=?", [$reqMyNew->id_theme])->fetch(); //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
-                $reqMyLangue = $bdd->query("SELECT * FROM langue WHERE id_langue=?", [$reqMyNew->id_langue])->fetch();
-                $reqMyEditor = $bdd->query("SELECT surname, name, mail_address FROM editor WHERE id_editor=?", [$reqMyNew->id_editor])->fetch();
+            <h2>
+                Visualisation de tous mes news :
+            </h2>
+            <hr>
+
+            <?php  //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
+            $id_editor = $_SESSION["auth"]->id_editor;
+            $reqMyNews = $bdd->query('SELECT * FROM news WHERE id_editor = ? ORDER BY date_news desc', [$id_editor]);
+            if ($reqMyNews->rowCount()) : //On regarde si il y'a des articles 
             ?>
+                <div id="articles">
+                    <?php
+                    foreach ($reqMyNews as $reqMyNew) :  //On créé une variable clef reqNew servant d'index pour pouvoir afficher le contenu de la BdD new grâce au foreach
+                        $reqMyTheme = $bdd->query("SELECT * FROM theme WHERE id_theme=?", [$reqMyNew->id_theme])->fetch(); //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
+                        $reqMyLangue = $bdd->query("SELECT * FROM langue WHERE id_langue=?", [$reqMyNew->id_langue])->fetch();
+                        $reqMyEditor = $bdd->query("SELECT surname, name, mail_address FROM editor WHERE id_editor=?", [$reqMyNew->id_editor])->fetch();
+                    ?>
 
 
-                <div class="article" style="border-color: <?= "blue" /* couleur du thème de l'article */ ?>;">
-                    <!-- < ?= signifie : < ?php echo -->
-                    <p>
-                        <strong>
-                            <u>
-                                L'auteur
-                            </u>
-                            :
-                        </strong>
-                        <?= $reqMyEditor->surname, " ", $reqMyEditor->name; ?>
-                        <?php if ($auth->user()) : ?>
-                            <a href="mailto: <?= $reqMyEditor->mail_address; ?>">
-                                <?= $reqMyEditor->mail_address; ?>
-                            </a>
-                        <?php endif; ?>
-                    </p>
+                        <div class="article" style="border-color: <?= "blue" /* couleur du thème de l'article */ ?>;">
+                            <!-- < ?= signifie : < ?php echo -->
+                            <p>
+                                <strong>
+                                    <u>
+                                        L'auteur
+                                    </u>
+                                    :
+                                </strong>
+                                <?= $reqMyEditor->surname, " ", $reqMyEditor->name; ?>
+                                <?php if ($auth->user()) : ?>
+                                    <a href="mailto: <?= $reqMyEditor->mail_address; ?>">
+                                        <?= $reqMyEditor->mail_address; ?>
+                                    </a>
+                                <?php endif; ?>
+                            </p>
 
-                    <p>
-                        <strong>
-                            <u>
-                                La langue
-                            </u>
-                            :
-                        </strong>
-                        <?= $reqMyLangue->title; ?>
-                    </p>
+                            <p>
+                                <strong>
+                                    <u>
+                                        La langue
+                                    </u>
+                                    :
+                                </strong>
+                                <?= $reqMyLangue->title; ?>
+                            </p>
 
-                    <p>
-                        <strong>
-                            <u>
-                                Le titre
-                            </u>
-                            :
-                        </strong>
-                        <?= $reqMyNew->title_news; ?>
-                    </p>
+                            <p>
+                                <strong>
+                                    <u>
+                                        Le titre
+                                    </u>
+                                    :
+                                </strong>
+                                <?= $reqMyNew->title_news; ?>
+                            </p>
 
-                    <p title="Description : <?= $reqMyTheme->description; ?>">
-                        <strong>
-                            <u>
-                                Le theme
-                            </u>
-                            :
-                        </strong>
-                        <?= $reqMyTheme->title ?>
-                    </p>
+                            <p title="Description : <?= $reqMyTheme->description; ?>">
+                                <strong>
+                                    <u>
+                                        Le theme
+                                    </u>
+                                    :
+                                </strong>
+                                <?= $reqMyTheme->title ?>
+                            </p>
 
-                    <p>
-                        <strong>
-                            <u>
-                                Le contenu
-                            </u>
-                            :
-                        </strong>
-                        <?= $reqMyNew->text_news; ?>
-                    </p>
+                            <p>
+                                <strong>
+                                    <u>
+                                        Le contenu
+                                    </u>
+                                    :
+                                </strong>
+                                <?= $reqMyNew->text_news; ?>
+                            </p>
 
-                    <p>
-                        <strong>
-                            <u>
-                                La date
-                            </u>
-                            :
-                        </strong>
-                        <?= date("d/m/y H:i:s", strtotime($reqMyNew->date_news)); ?>
-                    </p> 
+                            <p>
+                                <strong>
+                                    <u>
+                                        La date
+                                    </u>
+                                    :
+                                </strong>
+                                <?= date("d/m/y H:i:s", strtotime($reqMyNew->date_news)); ?>
+                            </p>
 
-                        <a href="removeArticle.php?id_news=<?= $reqMyNew->id_news; ?> "> <button class="warning button">Supprimer</button></a>
-                        <a href="changeVisibility.php?id_news=<?= $reqMyNew->id_news; ?>&visibility=<?= $reqMyNew->visibility; ?> "> <button class="info button"><?php if($reqMyNew->visibility) : ?> Passer en privé <?php else : ?>Passer en public<?php endif; ?></button></a> 
+                            <a href="removeArticle.php?id_news=<?= $reqMyNew->id_news; ?> "> <button class="warning button">Supprimer</button></a>
+                            <a href="changeVisibility.php?id_news=<?= $reqMyNew->id_news; ?>&visibility=<?= $reqMyNew->visibility; ?> "> <button class="info button"><?php if ($reqMyNew->visibility) : ?> Passer en privé <?php else : ?>Passer en public<?php endif; ?></button></a>
 
+                        </div>
+
+                    <?php
+                    endforeach; //close foreach
+                    ?>
                 </div>
-
             <?php
-            endforeach; //close foreach
+            else :
             ?>
-        </div>
-    <?php
-    else :
-    ?>
-        <p>
-            Aucune news enregistrées dans la base de donnée
-        </p> <!-- Dans le cas où il n'y a pas d'article -->
-    <?php endif; ?>
-<?php endif; ?>
+                <p>
+                    Aucune news enregistrées dans la base de donnée
+                </p> <!-- Dans le cas où il n'y a pas d'article -->
+            <?php endif; ?>
+        <?php endif; ?>
 
 
 

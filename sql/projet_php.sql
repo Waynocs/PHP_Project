@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 04 nov. 2020 à 00:28
+-- Généré le : mer. 04 nov. 2020 à 14:51
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.11
 
@@ -42,7 +42,8 @@ CREATE TABLE `editor` (
 
 INSERT INTO `editor` (`id_editor`, `surname`, `name`, `mail_address`, `password`, `dateCreate`) VALUES
 (6, 'SERANO', 'Waian', 'waynocserano@gmail.com', '$2y$10$GRj9MZH.ZcE0C.VMzUszZe88vCx/wU0aSaLzuRQNwx/p.jJXtUsYS', '2020-11-02 09:43:37'),
-(7, 'GROSIO', 'Aurelien', 'aureliengrosio@free.fr', '$2y$10$A.ol9PE62E1W38tWrQ13y.UaKIeF/cZKKGOMyXuAn6Y2Z.Y2/e1WS', '2020-11-02 09:47:05');
+(7, 'GROSIO', 'Aurelien', 'aureliengrosio@free.fr', '$2y$10$A.ol9PE62E1W38tWrQ13y.UaKIeF/cZKKGOMyXuAn6Y2Z.Y2/e1WS', '2020-11-02 09:47:05'),
+(10, 'HANEN', 'Nathan', 'test@test.test', '$2y$10$W5HkwRHYGOTloa69zzFkVeg2TbaH4gZPkhzPQ6scO17JM7582a2yu', '2020-11-04 12:00:33');
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,8 @@ CREATE TABLE `news` (
 INSERT INTO `news` (`id_news`, `id_theme`, `id_langue`, `visibility`, `title_news`, `date_news`, `text_news`, `id_editor`) VALUES
 (28, 14, 15, 0, 'qsdsqd', '2020-11-03 19:12:53', '\r\n            qsff', 6),
 (30, 14, 15, 1, 'Mort en surf', '2020-11-03 23:08:25', '\r\n            QSVQ', 6),
-(36, 15, 16, 1, 'zevds', '2020-11-04 00:24:24', '\r\n            sdvsdv', 6);
+(36, 15, 16, 1, 'zevds', '2020-11-04 00:24:24', '\r\n            sdvsdv', 6),
+(37, 14, 15, 1, 'dfvc ', '2020-11-04 12:00:42', '\r\n            htgdfvxc', 10);
 
 -- --------------------------------------------------------
 
@@ -98,16 +100,17 @@ INSERT INTO `news` (`id_news`, `id_theme`, `id_langue`, `visibility`, `title_new
 CREATE TABLE `theme` (
   `id_theme` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
-  `description` text NOT NULL
+  `description` text NOT NULL,
+  `color` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `theme`
 --
 
-INSERT INTO `theme` (`id_theme`, `title`, `description`) VALUES
-(14, 'Math&eacute;matiques', 'Les math&eacute;matiques (ou la math&eacute;matique) sont un ensemble de connaissances abstraites r&eacute;sultant de raisonnements logiques appliqu&eacute;s &agrave; des objets divers tels que les ensembles math&eacute;matiques, les nombres, les formes, les structures, les transformations, etc.'),
-(15, 'Fran&ccedil;ais', 'Le fran&ccedil;ais est une langue indo-europ&eacute;enne de la famille des langues romanes.');
+INSERT INTO `theme` (`id_theme`, `title`, `description`, `color`) VALUES
+(14, 'Math&eacute;matiques', 'Les math&eacute;matiques (ou la math&eacute;matique) sont un ensemble de connaissances abstraites r&eacute;sultant de raisonnements logiques appliqu&eacute;s &agrave; des objets divers tels que les ensembles math&eacute;matiques, les nombres, les formes, les structures, les transformations, etc.', 'FF0000'),
+(15, 'Fran&ccedil;ais', 'Le fran&ccedil;ais est une langue indo-europ&eacute;enne de la famille des langues romanes.', '0080FF');
 
 --
 -- Index pour les tables déchargées
@@ -145,7 +148,7 @@ ALTER TABLE `theme`
 -- AUTO_INCREMENT pour la table `editor`
 --
 ALTER TABLE `editor`
-  MODIFY `id_editor` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_editor` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `langue`
@@ -157,7 +160,7 @@ ALTER TABLE `langue`
 -- AUTO_INCREMENT pour la table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT pour la table `theme`

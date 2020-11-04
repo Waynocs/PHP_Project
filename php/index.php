@@ -235,15 +235,15 @@ if (isset($_POST["theme"]))
 
 <!-- ---------------------------------------------------------------------------------------- -->
 
-        <h2>
-            Visualisation de tous mes news :
-        </h2>
+        
 <?php
 if($auth->user()) :
 
 ?>
 
-
+        <h2>
+            Visualisation de tous mes news :
+        </h2>
     <hr>
 
     <?php  //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)

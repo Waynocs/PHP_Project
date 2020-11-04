@@ -129,35 +129,3 @@ nav .button:hover {
     border: solid var(--themed-color) 1px;
     padding: 1rem;
 }
-
-#articles {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 4rem 2%;
-}
-
-.article {
-    width: 30%;
-    border-width: 1px;
-    /* border-top-width: 2rem; */
-    border-style: solid;
-    margin: 1rem auto;
-    background-color: var(--themed-light);
-    word-break: break-word;
-
-}
-
-.article>div {
-    padding: 2rem;
-}
-
-.article>a {
-    display: block;
-    padding: 1rem 1rem;
-    color: var(--themed-white);
-}
-
-.article>a>h3 {
-    margin: 0;
-    font-size: 1.5rem;
-}

@@ -51,10 +51,44 @@ if (isset($_POST["theme"]))
             --cancel-color: <?= "red" /* todo */ ?>;
         }
 
-        /* TODO : générer des classes pour chaque thème avec leur couleur */
+        <?php
+        foreach ($bdd->query('SELECT * FROM theme') as $theme) {
+            $color = $theme->color;
+            echo ".theme-" . $theme->id_theme . " {\n";
+            echo "border: solid 1px #$color;\n";
+            echo "transition: background-color .2s;\n";
+            echo "pointer-events: none;\n";
+            echo "}\n";
+            echo ".theme-" . $theme->id_theme . ":hover {\n";
+            echo "background-color: #$color" . 30 . ";\n";
+            echo "transition: background-color .2s;\n";
+            echo "}\n";
+            echo ".theme-" . $theme->id_theme . ":hover {\n";
+            echo "}\n";
+            echo ".theme-" . $theme->id_theme . ">a {\n";
+            echo "border-bottom: solid 1px #$color;\n";
+            echo "transition: background-color .2s, color .2s;\n";
+            echo "pointer-events: auto;\n";
+            echo "}\n";
+            echo ".theme-" . $theme->id_theme . ">a:hover {\n";
+            echo "background-color: #$color;\n";
+            echo "transition: background-color .2s, color .2s;\n";
+            echo "}\n";
+            echo ".theme-" . $theme->id_theme . ">a>h3 {\n";
+            echo "text-align: center;\n";
+            echo "color: #$color;\n";
+            echo "transition: letter-spacing .2s;\n";
+            echo "}\n";
+            echo ".theme-" . $theme->id_theme . ">a:hover>h3 {\n";
+            echo "color: var(--themed-white);\n";
+            echo "letter-spacing: .15rem;\n";
+            echo "transition: letter-spacing .2s;\n";
+            echo "}\n";
+        }
+        ?>
     </style>
-    <link type="text/css" rel="stylesheet" href="../css/index.css">
     <link type="text/css" rel="stylesheet" href="../css/style.css">
+    <link type="text/css" rel="stylesheet" href="../css/index.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
     <title>
@@ -153,9 +187,8 @@ if (isset($_POST["theme"]))
                 ?>
 
 
-                    <div class="article" style="border-color: <?= "blue" /* couleur du thème de l'article */ ?>;">
-                        <!-- TODO : ajouter la classe du thème généré à l'article -->
-                        <a href="" style="background-color: blue;">
+                    <div class="article <?= "theme-" . $reqTheme->id_theme ?>">
+                        <a href="">
                             <!-- TODO lien vers l'article complet -->
                             <h3>
                                 <?= $reqNew->title_news; ?>

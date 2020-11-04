@@ -38,7 +38,23 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
 <html lang="fr">
 
 <head>
-    <link type="text/css" rel="stylesheet" href="../css/commun.css">
+    <style>
+        :root {
+            --main-color: <?= "orange" ?>;
+            --main-white: <?= "white" ?>;
+            --main-black: <?= "black" ?>;
+            --main-light: <?= "white" ?>;
+            --main-dark: <?= "#181818" ?>;
+            --themed-color: <?= "orange" /* todo */ ?>;
+            --themed-white: <?= "white" /* todo */ ?>;
+            --themed-black: <?= "black" /* todo */ ?>;
+            --themed-light: <?= "white" /* todo */ ?>;
+            --themed-dark: <?= "black" /* todo */ ?>;
+            --validate-color: <?= "green" /* todo */ ?>;
+            --cancel-color: <?= "red" /* todo */ ?>;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="../css/style.css">
     <link type="text/css" rel="stylesheet" href="../css/connexion.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
@@ -50,30 +66,28 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
 <body>
     <header>
 
-        <h1>
-            <a href="connexion.php">
-                Connexion/Inscription
+        <h1 class="main-title">
+            <a href="index.php">
+                Connexion
             </a>
         </h1>
 
     </header>
     <nav>
-        <p>
-            <a href="index.php">
-                <button>
-                    Les news
-                </button>
+        <div>
+            <a href="index.php" class="button">
+                Les news
             </a>
-        </p>
+        </div>
     </nav>
     <?php
-        if ($session->read('flash')) {
-            echo $session->read('flash');
-            $session->delete('flash');
-        }
-        ?>
+    if ($session->read('flash')) {
+        echo $session->read('flash');
+        $session->delete('flash');
+    }
+    ?>
 
-    
+
     <div id="connexion">
         <form method="POST">
             <h2>
@@ -92,13 +106,13 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
             <input type="password" name="mdpConnexion" placeholder="mot de passe" <?php if (isset($_POST['mdpConexxion'])) : ?> value="<?= $_POST['mdpConexxion']; ?>" <?php endif; ?> />
             <br />
             <br />
-            <input type="submit" name="connexion" value="Se connecter" />
+            <input type="submit" name="connexion" value="Se connecter" class="button" />
             <br />
             <br />
-            <p>Pas encore de compte ? <a href ="inscription.php">S'inscrire</a>
-            </form>
+            <p>Pas encore de compte ? <a href="inscription.php">S'inscrire</a>
+        </form>
     </div>
-    
+
     <br />
     <br />
 

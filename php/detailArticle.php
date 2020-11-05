@@ -10,13 +10,13 @@ include("./inc/base.php");
 
 if (!isset($_GET['id_news']) || empty($_GET['id_news']) || !is_numeric($_GET['id_news'])) {
     header('location: index.php');
-    exit();
+    die();
 }
 $id_news = htmlspecialchars($_GET['id_news']);
 $reqNews = $bdd->query('SELECT * FROM news WHERE visibility AND id_news=?', [$id_news]);
 if (!$reqNews->rowCount()) {
     header("location: index.php");
-    exit();
+    die();
 }
 $reqNew = $reqNews->fetch();
 $reqTheme = $bdd->query("SELECT * FROM theme WHERE id_theme=?", [$reqNew->id_theme])->fetch(); //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)

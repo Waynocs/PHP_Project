@@ -9,7 +9,7 @@ include("./inc/base.php");
 if ($auth->user()) //appel la fonction user dans la class Auth pour savoir si l'utilisateur est deja connecté. Si oui : oblige l'utilisateur à etre redirigé par le header vers compte.php
 {
     header('Location: compte.php');
-    exit();
+    die();
 }
 
 if (isset($_POST['inscription'])) { //Si bouton inscription validé, la condition est remplie
@@ -30,7 +30,7 @@ if (isset($_POST['inscription'])) { //Si bouton inscription validé, la conditio
                                 $auth->register($bdd, $nomInscription, $prenomInscription, $mailInscription, $mdpInscription); //Appel de la fonction register de la classe auth
 
                                 header('Location: compte.php'); //redirige l'utilisateur sur la page compte.php
-                                exit(); //Dis explicitement que le script est bien terminé
+                                die(); //Dis explicitement que le script est bien terminé
                             } else
                                 echo ("<p style='color: red;'> Votre email est déjà pris. </p>");
                         } else

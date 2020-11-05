@@ -20,7 +20,7 @@ if (isset($_POST["ecrireArticle"])) { //Si bouton "ecrire" utilisé, on rempli l
 
         $session->write('flash', "<p style='color: green;'> L'article à bien été posté à l'adresse : <a href='index.php' title='ici'> ici </a> </p>");
         header('Location: compte.php');
-        exit();
+        die();
     } else {
         echo ("<p style='color: red;'> Veuillez remplir le formulaire article s'il vous plaît. </p>");
     }
@@ -36,7 +36,7 @@ if (isset($_POST["ecrireTheme"])) { //Si bouton "ecrire" utilisé, on rempli la 
 
         $session->write('flash', "<p style='color: green;'> Le thème à bien été enregistré </p>");
         header('Location: compte.php');
-        exit();
+        die();
     } else {
         echo ("<p style='color: red;'> Veuillez remplir le formulaire thème s'il vous plaît. </p>");
     }
@@ -51,7 +51,7 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
 
         $session->write('flash', "<p style='color: green;'> La langue à bien été enregistrée </p>");
         header('Location: compte.php');
-        exit();
+        die();
     } else {
         echo ("<p style='color: red;'> Veuillez remplir le formulaire langue s'il vous plaît. </p>");
     }

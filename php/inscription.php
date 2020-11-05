@@ -18,37 +18,45 @@ if (isset($_POST['inscription'])) { //Si bouton inscription validé, la conditio
             $mailInscription = mb_strtolower(htmlspecialchars($_POST['mailInscription'])); //mb_strtolower mettre la chaine de caractere en minuscule pour pouvoir comparer avec la BdD si le mail est déjà pris
             $prenomInscription = htmlspecialchars($_POST['prenomInscription']);
             $nomInscription = htmlspecialchars($_POST['nomInscription']);
-
             if (filter_var($mailInscription, FILTER_VALIDATE_EMAIL)) {
                 if (strlen($prenomInscription) >= 3 && strlen($prenomInscription) <= 24) { //Vérifie si le prenom se trouve entre 4 et 16 caractères
                     if (strlen($nomInscription) >= 3 && strlen($nomInscription) <= 24) {
                         if (strlen($_POST['mdpInscription']) >= 6 && strlen($_POST['mdpInscription']) <= 50) {
-                            $mdpInscription = password_hash(htmlspecialchars($_POST['mdpInscription']), PASSWORD_DEFAULT); //Appel de la fonction password_hash de parametre le mdp d'inscription, et PASSWORD_DEFAULT qui est le type de hashage (cryptage)
-                            $reqUser = $bdd->query("SELECT id_editor FROM editor WHERE mail_address = ?", [$mailInscription])->fetch(); //Appel de la fonction query de la classe Database (va executer avec la fonction fetch pour pouvoir afficher les informations en objet)
-                            if (!$reqUser)  //Si aucun retour de la requete, alors le mail n'est pas déjà pris dans la BdD
-                            {
-                                $auth->register($bdd, $nomInscription, $prenomInscription, $mailInscription, $mdpInscription); //Appel de la fonction register de la classe auth
+                            if (preg_match("/[a-z]/", $_POST['mdpInscription']) == 1) {
+                                if (preg_match("/[A-Z]/", $_POST['mdpInscription']) == 1) {
+                                    if (preg_match("/[0-9]/", $_POST['mdpInscription']) == 1) {
+                                        $mdpInscription = password_hash(htmlspecialchars($_POST['mdpInscription']), PASSWORD_DEFAULT); //Appel de la fonction password_hash de parametre le mdp d'inscription, et PASSWORD_DEFAULT qui est le type de hashage (cryptage)
+                                        $reqUser = $bdd->query("SELECT id_editor FROM editor WHERE mail_address = ?", [$mailInscription])->fetch(); //Appel de la fonction query de la classe Database (va executer avec la fonction fetch pour pouvoir afficher les informations en objet)
+                                        if (!$reqUser)  //Si aucun retour de la requete, alors le mail n'est pas déjà pris dans la BdD
+                                        {
+                                            $auth->register($bdd, $nomInscription, $prenomInscription, $mailInscription, $mdpInscription); //Appel de la fonction register de la classe auth
 
-                                header('Location: compte.php'); //redirige l'utilisateur sur la page compte.php
-                                die(); //Dis explicitement que le script est bien terminé
+                                            header('Location: compte.php'); //redirige l'utilisateur sur la page compte.php
+                                            die(); //Dis explicitement que le script est bien terminé
+                                        } else
+                                            $session->write("flash", "<p style='color: red;'> Votre email est déjà pris. </p>");
+                                    } else
+                                        $session->write("flash", " <p style='color: red;'> Votre mot de passe doit contenir un chiffre. </p>");
+                                } else
+                                    $session->write("flash", " <p style='color: red;'> Votre mot de passe doit contenir une lettre majuscule. </p>");
                             } else
-                                echo ("<p style='color: red;'> Votre email est déjà pris. </p>");
+                                $session->write("flash", " <p style='color: red;'> Votre mot de passe doit contenir une lettre minuscule. </p>");
                         } else
                             $session->write("flash", " <p style='color: red;'> Votre mot de passe doit être entre 6 et 50 caractères. </p>");
                     } else
-                        echo ("<p style='color: red;'> Votre nom doit être entre 3 et 24 caractères. </p>"); //faire flash
+                        $session->write("flash", "<p style='color: red;'> Votre nom doit être entre 3 et 24 caractères. </p>"); //faire flash
 
                 } else
-                    echo ("<p style='color: red;'> Votre prenom doit être entre 3 et 24 caractères. </p>"); //faire flash
+                    $session->write("flash", "<p style='color: red;'> Votre prenom doit être entre 3 et 24 caractères. </p>"); //faire flash
 
             } else
-                echo ("<p style='color: red;'> Votre email est invalide </p>"); //faire flash
+                $session->write("flash", "<p style='color: red;'> Votre email est invalide </p>"); //faire flash
 
         } else
-            echo ("<p style='color: red;'> Les deux mots de passe ne correspondent pas. </p>"); //faire flash
+            $session->write("flash", "<p style='color: red;'> Les deux mots de passe ne correspondent pas. </p>"); //faire flash
 
     } else
-        echo ("<p style='color: red;'> Veuillez remplir le formulaire s'il vous plaît. </p>"); //faire flash
+        $session->write("flash", "<p style='color: red;'> Veuillez remplir le formulaire s'il vous plaît. </p>"); //faire flash
 
 }
 ?>

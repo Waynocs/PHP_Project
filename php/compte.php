@@ -9,11 +9,11 @@ $auth->restrict(); //Appel de la fonction restrict de la class Auth qui va amene
 //Introduire dans la BdD des articles
 if (isset($_POST["ecrireArticle"])) { //Si bouton "ecrire" utilisé, on rempli la condition et on rentre dans le second if
     if (!empty($_POST['titreArticle']) && !empty($_POST['themeArticle']) && !empty($_POST['langueArticle']) && isset($_POST['visibility']) && !empty($_POST['contenuArticle'])) { //Regarde si le titre ainsi que le contenu n'est pas vide
-        $titreArticle = htmlentities($_POST['titreArticle']); //htmlentities convertit tous les caractères éligibles en entités HTML
-        $themeArticle = htmlentities($_POST['themeArticle']);
-        $langueArticle = htmlentities($_POST['langueArticle']);
-        $visibility = htmlentities($_POST['visibility']);
-        $contenuArticle = htmlentities($_POST['contenuArticle']);
+        $titreArticle = htmlspecialchars($_POST['titreArticle']); //htmlspecialchars convertit tous les caractères éligibles en entités HTML
+        $themeArticle = htmlspecialchars($_POST['themeArticle']);
+        $langueArticle = htmlspecialchars($_POST['langueArticle']);
+        $visibility = htmlspecialchars($_POST['visibility']);
+        $contenuArticle = htmlspecialchars($_POST['contenuArticle']);
         $id_editor = $_SESSION['auth']->id_editor;
 
         $bdd->query("INSERT INTO news SET id_theme = ?, id_langue = ?, visibility = ?, title_news = ?, date_news = NOW(), text_news = ?, id_editor = ?",  [$themeArticle, $langueArticle, $visibility, $titreArticle, $contenuArticle, $id_editor]); //appel de la fonction query de parametre tableau titre et contenu, de la class Database.php
@@ -29,8 +29,8 @@ if (isset($_POST["ecrireArticle"])) { //Si bouton "ecrire" utilisé, on rempli l
 //Introduire dans la BdD des articles
 if (isset($_POST["ecrireTheme"])) { //Si bouton "ecrire" utilisé, on rempli la condition et on rentre dans le second if
     if (!empty($_POST['titreTheme']) && !empty($_POST['descriptionTheme'])) { //Regarde si le titre ainsi que le contenu n'est pas vide
-        $titreTheme = htmlentities($_POST['titreTheme']); //htmlentities convertit tous les caractères éligibles en entités HTML
-        $descriptionTheme = htmlentities($_POST['descriptionTheme']);
+        $titreTheme = htmlspecialchars($_POST['titreTheme']); //htmlspecialchars convertit tous les caractères éligibles en entités HTML
+        $descriptionTheme = htmlspecialchars($_POST['descriptionTheme']);
 
         $bdd->query("INSERT INTO theme SET title = ?, description = ?",  [$titreTheme, $descriptionTheme]); //appel de la fonction query de parametre tableau titre et contenu, de la class Database.php
 
@@ -45,7 +45,7 @@ if (isset($_POST["ecrireTheme"])) { //Si bouton "ecrire" utilisé, on rempli la 
 //Introduire dans la BdD des articles
 if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la condition et on rentre dans le second if
     if (!empty($_POST['titleLangue'])) { //Regarde si le titre ainsi que le contenu n'est pas vide
-        $titleLangue = htmlentities($_POST['titleLangue']); //htmlentities convertit tous les caractères éligibles en entités HTML
+        $titleLangue = htmlspecialchars($_POST['titleLangue']); //htmlspecialchars convertit tous les caractères éligibles en entités HTML
 
         $bdd->query("INSERT INTO langue SET title = ?",  [$titleLangue]); //appel de la fonction query de parametre tableau titre et contenu, de la class Database.php
 
@@ -175,6 +175,15 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
 
             <label for="contenuArticle">
                 description de votre article :
+                <span class="pop-info">
+                    ?
+                    <div>
+                        Formattage : <br />
+                        <span class="info">[g]...[/g]</span> : en gras<br />
+                        <span class="info">[i]...[/i]</span> : en italique<br />
+                        <span class="info">[t]...[/t]</span> : sous-titre
+                    </div>
+                </span>
             </label>
             <br />
             <br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
@@ -205,9 +214,7 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
             </label>
             <br />
             <br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
-            <textarea name="descriptionTheme" placeholder="La description" rows="10" cols="50">
-
-            </textarea>
+            <textarea name="descriptionTheme" placeholder="La description" rows="10" cols="50"></textarea>
             <br />
             <br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
             <input type="submit" name="ecrireTheme" value="Envoyer" class="info button" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->

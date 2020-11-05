@@ -1,0 +1,57 @@
+.title,
+.title *,
+.bold,
+.bold * {
+    font-weight: 600;
+    color: var(--themed-color);
+}
+
+.italic,
+.italic * {
+    font-style: italic;
+}
+
+.title:not(.big) {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    text-decoration: solid 1px var(--themed-color);
+}
+
+.big.title {
+    font-size: 2.5rem;
+    border-bottom: 1px solid var(--themed-color);
+    margin-bottom: .2em;
+}
+
+.text {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    text-indent: 2rem;
+}
+
+.text::first-letter {
+    font-size: 2em;
+}
+
+.infobar {
+    color: var(--themed-white);
+    background-color: var(--themed-color);
+    font-style: italic;
+    padding: .5rem 1rem;
+}
+
+.infos {
+    margin-left: 2rem;
+    color: var(--themed-dark);
+    font-size: .8rem;
+    font-style: italic;
+}
+
+.band {
+    height: 1rem;
+    background-color: var(--themed-color);
+}
+
+.space {
+    height: 5rem;
+}

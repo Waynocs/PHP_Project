@@ -15,15 +15,15 @@ if ($auth->user()) //appel la fonction user dans la class Auth pour savoir si l'
 if (isset($_POST['inscription'])) { //Si bouton inscription validé, la condition est remplie
     if (!empty($_POST['prenomInscription']) && !empty($_POST['nomInscription']) && !empty($_POST['mailInscription']) && !empty($_POST['mdpInscription']) && !empty($_POST['mdpConfirmerInscription'])) { //Si les 3 champs !vide
         if ($_POST['mdpInscription'] === $_POST['mdpConfirmerInscription']) { //On vérifie si les deux champs sont égaux 
-            $mailInscription = mb_strtolower(htmlentities($_POST['mailInscription'])); //mb_strtolower mettre la chaine de caractere en minuscule pour pouvoir comparer avec la BdD si le mail est déjà pris
-            $prenomInscription = htmlentities($_POST['prenomInscription']);
-            $nomInscription = htmlentities($_POST['nomInscription']);
+            $mailInscription = mb_strtolower(htmlspecialchars($_POST['mailInscription'])); //mb_strtolower mettre la chaine de caractere en minuscule pour pouvoir comparer avec la BdD si le mail est déjà pris
+            $prenomInscription = htmlspecialchars($_POST['prenomInscription']);
+            $nomInscription = htmlspecialchars($_POST['nomInscription']);
 
             if (filter_var($mailInscription, FILTER_VALIDATE_EMAIL)) {
                 if (strlen($prenomInscription) >= 3 && strlen($prenomInscription) <= 24) { //Vérifie si le prenom se trouve entre 4 et 16 caractères
                     if (strlen($nomInscription) >= 3 && strlen($nomInscription) <= 24) {
                         if (strlen($_POST['mdpInscription']) >= 6 && strlen($_POST['mdpInscription']) <= 50) {
-                            $mdpInscription = password_hash(htmlentities($_POST['mdpInscription']), PASSWORD_DEFAULT); //Appel de la fonction password_hash de parametre le mdp d'inscription, et PASSWORD_DEFAULT qui est le type de hashage (cryptage)
+                            $mdpInscription = password_hash(htmlspecialchars($_POST['mdpInscription']), PASSWORD_DEFAULT); //Appel de la fonction password_hash de parametre le mdp d'inscription, et PASSWORD_DEFAULT qui est le type de hashage (cryptage)
                             $reqUser = $bdd->query("SELECT id_editor FROM editor WHERE mail_address = ?", [$mailInscription])->fetch(); //Appel de la fonction query de la classe Database (va executer avec la fonction fetch pour pouvoir afficher les informations en objet)
                             if (!$reqUser)  //Si aucun retour de la requete, alors le mail n'est pas déjà pris dans la BdD
                             {

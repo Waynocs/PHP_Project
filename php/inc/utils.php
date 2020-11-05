@@ -125,3 +125,18 @@ function hslToRgb($h, $s, $l)
 
     return array(floor($r), floor($g), floor($b));
 }
+
+function formatText($string)
+{
+    $string = '<div class="text">' . htmlspecialchars($string) . '</div>';
+    $string = str_replace('[g]', '<span class="bold">', $string);
+    $string = str_replace('[/g]', '</span>', $string);
+    $string = str_replace('[b]', '<span class="bold">', $string);
+    $string = str_replace('[/b]', '</span>', $string);
+    $string = str_replace('[i]', '<span class="italic">', $string);
+    $string = str_replace('[/i]', '</span>', $string);
+    $string = str_replace('[t]', '</div><div class="title">', $string);
+    $string = str_replace('[/t]', '</div><div class="text">', $string);
+    $string = str_replace('\n', '<br />', $string);
+    return $string;
+}

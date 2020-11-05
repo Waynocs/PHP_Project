@@ -13,7 +13,7 @@ $darkMode = isset($_COOKIE["dark_theme"]);
 --themed-white: <?= $darkMode ? "black" : "white" ?>;
 --themed-black: <?= $darkMode ? "white" : "black" ?>;
 --themed-light: <?= $darkMode ? "#303030" : "white" ?>;
---themed-dark: <?= $darkMode ? "#d0d0d0" : "black"  ?>;
+--themed-dark: <?= $darkMode ? "#d0d0d0" : "#181818"  ?>;
 --validate-color: <?= $darkMode ? "#" . getDarkThemeColor("1ED760", "ffffff", "303030") : "#1ED760" ?>;
 --cancel-color: <?= $darkMode ? "#" . getDarkThemeColor("D2060D", "ffffff", "303030") : "#D2060D" ?>;
 }

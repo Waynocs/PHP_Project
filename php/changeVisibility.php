@@ -12,9 +12,9 @@ $bdd = App::getDatabase();
 $auth->restrict();
 
 if (isset($_GET['id_news']) && isset($_GET['visibility'])) {
-    $id_news = htmlentities($_GET['id_news']);
+    $id_news = htmlspecialchars($_GET['id_news']);
     $id_editor = $_SESSION['auth']->id_editor;
-    $visibility = htmlentities(!$_GET['visibility']);
+    $visibility = htmlspecialchars(!$_GET['visibility']);
     $req_News = $bdd->query("UPDATE news SET visibility = ? WHERE id_editor = ? AND id_news = ?", [$visibility, $id_editor, $id_news]);
     if ($req_News) {
         $session->write('flash', "<p class='info flash'> Le type de l'article a bien été changé </p>");

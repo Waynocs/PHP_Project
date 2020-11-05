@@ -12,7 +12,7 @@ $bdd = App::getDatabase();
 $auth->restrict();
 
 if (isset($_GET['id_news'])) {
-    $id_news = htmlentities($_GET['id_news']);
+    $id_news = htmlspecialchars($_GET['id_news']);
     $id_editor = $_SESSION['auth']->id_editor;
     $req_News = $bdd->query("DELETE FROM news  WHERE id_editor = ? AND id_news = ?", [$id_editor, $id_news]);
     if ($req_News) {

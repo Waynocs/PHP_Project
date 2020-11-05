@@ -15,8 +15,8 @@ if ($auth->user()) //appel la fonction user dans la class Auth pour savoir si l'
 
 if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est remplie
     if (!empty($_POST['mailConnexion']) && !empty($_POST['mdpConnexion'])) { //Si les 2 champs !vide
-        $mdpConnexion = htmlentities($_POST['mdpConnexion']);
-        $mailConnexion = mb_strtolower(htmlentities($_POST['mailConnexion']));
+        $mdpConnexion = htmlspecialchars($_POST['mdpConnexion']);
+        $mailConnexion = mb_strtolower(htmlspecialchars($_POST['mailConnexion']));
         if ($auth->login($bdd, $mailConnexion, $mdpConnexion)) { //Appel de la fonction login de parametre bdd, pseudoConnexion et mdpConnexion dans la class Auth.php, retourne true si la connexion s'est faite, pour pouvoir rediriger l'utilisateur
             {
                 header('Location: compte.php');

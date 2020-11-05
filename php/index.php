@@ -13,7 +13,7 @@ $reqNews = $bdd->query('SELECT * FROM news WHERE visibility ORDER BY date_news d
 
 if (isset($_POST["langue"]))
     if (!empty($_POST['langueArticle'])) {
-        $id_langue = htmlentities($_POST['langueArticle']);
+        $id_langue = htmlspecialchars($_POST['langueArticle']);
         if ($id_langue != 0)
             $reqNews = $bdd->query('SELECT * FROM news WHERE id_langue = ? AND visibility ORDER BY date_news desc', [$id_langue]);
     }
@@ -23,7 +23,7 @@ if (isset($_POST["langue"]))
 if (isset($_POST["theme"]))
 
     if (!empty($_POST['themeArticle'])) {
-        $id_theme = htmlentities($_POST['themeArticle']);
+        $id_theme = htmlspecialchars($_POST['themeArticle']);
         if ($id_theme != 0)
             $reqNews = $bdd->query('SELECT * FROM news WHERE id_theme = ? AND visibility ORDER BY date_news desc', [$id_theme]);
     }
@@ -38,7 +38,7 @@ if (isset($_POST["theme"]))
         foreach ($bdd->query('SELECT * FROM theme') as $theme) {
             $color = $theme->color;
             if (darkTheme())
-                $color = getDarkThemeColor($color, "ffffff", "000000");
+                $color = getDarkThemeColor($color, "ffffff", "303030");
             echo ".theme-" . $theme->id_theme . " {\n";
             echo "border: solid 1px #$color;\n";
             echo "transition: background-color .2s;\n";
@@ -247,8 +247,7 @@ if (isset($_POST["theme"]))
 
 
                         <div class="article <?= "theme-" . $reqMyTheme->id_theme ?>">
-                            <a href="">
-                                <!-- TODO lien vers l'article complet -->
+                            <a href="detailArticle.php?id_news=<?= $reqMyNew->id_news; ?> ">
                                 <h3>
                                     <?= $reqMyNew->title_news; ?>
                                 </h3>
@@ -297,16 +296,6 @@ if (isset($_POST["theme"]))
                                         :
                                     </strong>
                                     <?= $reqMyTheme->title ?>
-                                </p>
-
-                                <p>
-                                    <strong>
-                                        <u>
-                                            Le contenu
-                                        </u>
-                                        :
-                                    </strong>
-                                    <?= $reqMyNew->text_news; ?>
                                 </p>
 
                                 <p>

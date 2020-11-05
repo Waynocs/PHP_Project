@@ -13,7 +13,7 @@ if (!isset($_GET['id_news']) || empty($_GET['id_news']) || !is_numeric($_GET['id
     die();
 }
 $id_news = htmlspecialchars($_GET['id_news']);
-$reqNews = $bdd->query('SELECT * FROM news WHERE visibility AND id_news=?', [$id_news]);
+$reqNews = $bdd->query('SELECT * FROM news WHERE (visibility OR id_editor = ' . ($auth->user() ? $auth->user()->id_editor : -1) . ') AND id_news=?', [$id_news]);
 if (!$reqNews->rowCount()) {
     header("location: index.php");
     die();

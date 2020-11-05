@@ -127,10 +127,10 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
         <form method="POST">
             <label for="titreArticle">
                 Le titre de votre article :
-            </label> <!-- Label relié au champs input par le for de label et le name de input-->
+            </label>
             <input type="text" name="titreArticle" placeholder="Le titre" />
             <br />
-            <br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
+            <br />
             <label for="themeArticle">
                 Le theme :
             </label>
@@ -186,11 +186,11 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
                 </span>
             </label>
             <br />
-            <br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
+            <br />
             <textarea name="contenuArticle" placeholder="La description" rows="10" cols="50"></textarea>
             <br />
-            <br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
-            <input type="submit" name="ecrireArticle" value="Envoyer" class="info button" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
+            <br />
+            <input type="submit" name="ecrireArticle" value="Envoyer" class="info button" />
         </form>
 
     </div>
@@ -204,20 +204,20 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
         <form method="POST">
             <label for="titreTheme">
                 Le titre de votre theme :
-            </label> <!-- Label relié au champs input par le for de label et le name de input-->
+            </label>
             <input type="text" name="titreTheme" placeholder="Le titre" />
             <br />
-            <br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
+            <br />
 
             <label for="descriptionTheme">
                 Description de votre theme :
             </label>
             <br />
-            <br /> <!-- Label relié au champs textarea par le for de label et le name de input-->
+            <br />
             <textarea name="descriptionTheme" placeholder="La description" rows="10" cols="50"></textarea>
             <br />
-            <br /> <!-- name = description pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
-            <input type="submit" name="ecrireTheme" value="Envoyer" class="info button" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
+            <br />
+            <input type="submit" name="ecrireTheme" value="Envoyer" class="info button" />
         </form>
     </div>
 
@@ -231,11 +231,11 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
         <form method="POST">
             <label for="titleLangue">
                 La langue :
-            </label> <!-- Label relié au champs input par le for de label et le name de input-->
+            </label>
             <input type="text" name="titleLangue" placeholder="Le titre de la langue" />
             <br />
-            <br /> <!-- name = titre pour pouvoir le récupérer avec $_POST grâce à la méthode employée par le formulaire -->
-            <input type="submit" name="ecrireLangue" value="Envoyer" class="info button" /> <!-- name = ecrire pour pouvoir envoyer la methode $_POST -->
+            <br />
+            <input type="submit" name="ecrireLangue" value="Envoyer" class="info button" />
         </form>
 
     </div>

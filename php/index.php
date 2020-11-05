@@ -154,7 +154,7 @@ if (isset($_POST["theme"]))
 
                     <div class="article <?= "theme-" . $reqTheme->id_theme ?>">
                         <a href="detailArticle.php?id_news=<?= $reqNew->id_news; ?> ">
-                            <!-- TODO lien vers l'article complet -->
+
                             <h3>
                                 <?= $reqNew->title_news; ?>
                             </h3>
@@ -216,10 +216,10 @@ if (isset($_POST["theme"]))
         ?>
             <p>
                 Aucune news enregistrées dans la base de donnée
-            </p> <!-- Dans le cas où il n'y a pas d'article -->
+            </p>
         <?php endif; ?>
 
-        <!-- ---------------------------------------------------------------------------------------- -->
+
 
 
         <?php
@@ -321,7 +321,7 @@ if (isset($_POST["theme"]))
                 ?>
                     <p>
                         Aucune news enregistrées dans la base de donnée
-                    </p> <!-- Dans le cas où il n'y a pas d'article -->
+                    </p>
                 <?php endif; ?>
             <?php endif; ?>
 

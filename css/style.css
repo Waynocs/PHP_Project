@@ -180,3 +180,17 @@ nav .button:hover {
     opacity: 100;
     transition: opacity .4s;
 }
+
+body::-webkit-scrollbar {
+    width: .4rem;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--themed-black);
+    transition: background-color .3s;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background-color: var(--themed-color);
+    transition: background-color .3s;
+}

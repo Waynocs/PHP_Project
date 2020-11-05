@@ -5,7 +5,7 @@ include_once 'class/Session.php';
 include_once 'class/Database.php';
 include_once './inc/utils.php';
 
-include("./inc/base.php");
+include_once("./inc/base.php");
 
 $reqThemes = $bdd->query('SELECT * FROM theme');
 $reqLangues = $bdd->query('SELECT * FROM langue');
@@ -34,7 +34,7 @@ if (isset($_POST["theme"]))
 <head>
     <style>
         <?php
-        include("./inc/style.php");
+        include_once("./inc/style.php");
         foreach ($bdd->query('SELECT * FROM theme') as $theme) {
             $color = $theme->color;
             if (darkTheme())
@@ -83,7 +83,7 @@ if (isset($_POST["theme"]))
 <body>
     <?php
     $title = "News";
-    include("./inc/header.php");
+    include_once("./inc/header.php");
     ?>
     <main>
         <?php

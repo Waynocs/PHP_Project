@@ -5,7 +5,7 @@ include_once 'class/Session.php';
 include_once 'class/Database.php';
 include_once './inc/utils.php';
 
-include("./inc/base.php");
+include_once("./inc/base.php");
 
 
 if (!isset($_GET['id_news']) || empty($_GET['id_news']) || !is_numeric($_GET['id_news'])) {
@@ -37,7 +37,7 @@ $reqEditor = $bdd->query("SELECT surname, name, mail_address FROM editor WHERE i
 <head>
     <style>
         <?php
-        include("./inc/style.php");
+        include_once("./inc/style.php");
         $color = $reqTheme->color;
         if (darkTheme())
             $color = getDarkThemeColor($color, "ffffff", "303030");
@@ -88,7 +88,7 @@ $reqEditor = $bdd->query("SELECT surname, name, mail_address FROM editor WHERE i
 <body>
     <?php
     $title = "News";
-    include("./inc/header.php");
+    include_once("./inc/header.php");
     ?>
     <div class="band"></div>
     <main>

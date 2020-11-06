@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 04 nov. 2020 à 14:51
+-- Généré le : ven. 06 nov. 2020 à 22:46
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.11
 
@@ -33,17 +33,9 @@ CREATE TABLE `editor` (
   `name` varchar(32) NOT NULL,
   `mail_address` varchar(128) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `dateCreate` datetime NOT NULL
+  `dateCreate` datetime NOT NULL,
+  `seeMail` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `editor`
---
-
-INSERT INTO `editor` (`id_editor`, `surname`, `name`, `mail_address`, `password`, `dateCreate`) VALUES
-(6, 'SERANO', 'Waian', 'waynocserano@gmail.com', '$2y$10$GRj9MZH.ZcE0C.VMzUszZe88vCx/wU0aSaLzuRQNwx/p.jJXtUsYS', '2020-11-02 09:43:37'),
-(7, 'GROSIO', 'Aurelien', 'aureliengrosio@free.fr', '$2y$10$A.ol9PE62E1W38tWrQ13y.UaKIeF/cZKKGOMyXuAn6Y2Z.Y2/e1WS', '2020-11-02 09:47:05'),
-(10, 'HANEN', 'Nathan', 'test@test.test', '$2y$10$W5HkwRHYGOTloa69zzFkVeg2TbaH4gZPkhzPQ6scO17JM7582a2yu', '2020-11-04 12:00:33');
 
 -- --------------------------------------------------------
 
@@ -81,16 +73,6 @@ CREATE TABLE `news` (
   `id_editor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Déchargement des données de la table `news`
---
-
-INSERT INTO `news` (`id_news`, `id_theme`, `id_langue`, `visibility`, `title_news`, `date_news`, `text_news`, `id_editor`) VALUES
-(28, 14, 15, 0, 'qsdsqd', '2020-11-03 19:12:53', '\r\n            qsff', 6),
-(30, 14, 15, 1, 'Mort en surf', '2020-11-03 23:08:25', '\r\n            QSVQ', 6),
-(36, 15, 16, 1, 'zevds', '2020-11-04 00:24:24', '\r\n            sdvsdv', 6),
-(37, 14, 15, 1, 'dfvc ', '2020-11-04 12:00:42', '\r\n            htgdfvxc', 10);
-
 -- --------------------------------------------------------
 
 --
@@ -109,7 +91,7 @@ CREATE TABLE `theme` (
 --
 
 INSERT INTO `theme` (`id_theme`, `title`, `description`, `color`) VALUES
-(14, 'Math&eacute;matiques', 'Les math&eacute;matiques (ou la math&eacute;matique) sont un ensemble de connaissances abstraites r&eacute;sultant de raisonnements logiques appliqu&eacute;s &agrave; des objets divers tels que les ensembles math&eacute;matiques, les nombres, les formes, les structures, les transformations, etc.', 'FF0000'),
+(14, 'Math&eacute;matiques', 'Les math&eacute;matiques (ou la math&eacute;matique) sont un ensemble de connaissances abstraites r&eacute;sultant de raisonnements logiques appliqu&eacute;s &agrave; des objets divers tels que les ensembles math&eacute;matiques, les nombres, les formes, les structures, les transformations, etc.', '902050'),
 (15, 'Fran&ccedil;ais', 'Le fran&ccedil;ais est une langue indo-europ&eacute;enne de la famille des langues romanes.', '0080FF');
 
 --
@@ -148,7 +130,7 @@ ALTER TABLE `theme`
 -- AUTO_INCREMENT pour la table `editor`
 --
 ALTER TABLE `editor`
-  MODIFY `id_editor` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_editor` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `langue`
@@ -160,13 +142,13 @@ ALTER TABLE `langue`
 -- AUTO_INCREMENT pour la table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT pour la table `theme`
 --
 ALTER TABLE `theme`
-  MODIFY `id_theme` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_theme` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

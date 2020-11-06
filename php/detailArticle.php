@@ -8,29 +8,27 @@ include_once './inc/utils.php';
 include_once("./inc/base.php");
 
 
+
 if (!isset($_GET['id_news']) || empty($_GET['id_news']) || !is_numeric($_GET['id_news'])) {
     header('location: index.php');
     die();
 }
 $id_news = htmlspecialchars($_GET['id_news']);
-$reqNews = $bdd->query('SELECT * FROM news WHERE (visibility OR id_editor = ' . ($auth->user() ? $auth->user()->id_editor : -1) . ') AND id_news=?', [$id_news]);
-if (!$reqNews->rowCount()) {
-    header("location: index.php");
+$reqNews = $bdd->query('SELECT * FROM news WHERE id_news = ?', [$id_news])->fetch();
+
+
+if (!$reqNews->visibility && !$auth->user()) {
+    header('location: index.php');
     die();
 }
-$reqNew = $reqNews->fetch();
-$reqTheme = $bdd->query("SELECT * FROM theme WHERE id_theme=?", [$reqNew->id_theme])->fetch(); //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
-$reqLangue = $bdd->query("SELECT * FROM langue WHERE id_langue=?", [$reqNew->id_langue])->fetch();
-$reqEditor = $bdd->query("SELECT surname, name, mail_address FROM editor WHERE id_editor=?", [$reqNew->id_editor])->fetch();
+
+
+$reqTheme = $bdd->query("SELECT * FROM theme WHERE id_theme=?", [$reqNews->id_theme])->fetch(); //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
+$reqLangue = $bdd->query("SELECT * FROM langue WHERE id_langue=?", [$reqNews->id_langue])->fetch();
+$reqEditor = $bdd->query("SELECT * FROM editor WHERE id_editor=?", [$reqNews->id_editor])->fetch();
 
 
 ?>
-
-
-
-
-
-
 
 <html>
 
@@ -82,7 +80,7 @@ $reqEditor = $bdd->query("SELECT surname, name, mail_address FROM editor WHERE i
     <link type="text/css" rel="stylesheet" href="../css/detailArticle.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8" />
-    <title> <?= $reqNew->title_news; ?> </title>
+    <title> <?= $reqNews->title_news; ?> </title>
 </head>
 
 <body>
@@ -96,18 +94,22 @@ $reqEditor = $bdd->query("SELECT surname, name, mail_address FROM editor WHERE i
             <?= $reqTheme->title ?>
         </span>
         <h3 class="big title">
-            <?= $reqNew->title_news; ?>
+            <?= $reqNews->title_news; ?>
         </h3>
         <div class="infos">
             <?= $reqLangue->title; ?> -
             <?= $reqEditor->surname, " ", $reqEditor->name; ?>
-            <?php if ($auth->user()) : ?>
-                <a href=" mailto: <?= $reqEditor->mail_address; ?>">
-                    <?= $reqEditor->mail_address; ?>
-                </a>
-            <?php endif; ?> - <?= date("d/m/y H:i:s", strtotime($reqNew->date_news)); ?>
+            <?php if ($auth->user()) :
+                if ($reqEditor->seeMail) : ?>
+                    <?php if ($reqEditor->seeMail) : ?>
+                        <a href=" mailto: <?= $reqEditor->mail_address; ?>">
+                            <?= $reqEditor->mail_address; ?>
+                        </a>
+            <?php endif;
+                endif;
+            endif; ?> - <?= date("d/m/y H:i:s", strtotime($reqNews->date_news)); ?>
         </div>
-        <?= formatText($reqNew->text_news); ?>
+        <?= formatText($reqNews->text_news); ?>
         <div class="space"></div>
         <a href="index.php"><button class="button">Retour</button></a>
     </main>

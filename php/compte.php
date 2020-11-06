@@ -6,7 +6,23 @@ include_once 'class/Database.php';
 
 include_once("./inc/base.php");
 $auth->restrict(); //Appel de la fonction restrict de la class Auth qui va amener à forcer l'utilisateur à changer de page (connexion.php) si !connecté
-//Introduire dans la BdD des articles
+
+$id_editor = $_SESSION['auth']->id_editor;
+$reqEditor = $bdd->query('SELECT seeMail FROM editor WHERE id_editor = ?', [$id_editor])->fetch();
+$varSeeMail = $reqEditor->seeMail;
+
+if (isset($_POST["envoyer"])) {
+    if (isset($_POST["seeMail"])) {
+        $seeMail = htmlspecialchars($_POST['seeMail']);
+        if (!$varSeeMail == $seeMail) {
+            $bdd->query("UPDATE editor SET seeMail = ? WHERE id_editor = ? ", [$seeMail, $id_editor]);
+            $session->write('flash', "<p style='color: green;'> Vous avez bien changé votre visibilité d'adresse mail </p>");
+            header('location: compte.php');
+            die();
+        }
+    }
+}
+
 if (isset($_POST["ecrireArticle"])) { //Si bouton "ecrire" utilisé, on rempli la condition et on rentre dans le second if
     if (!empty($_POST['titreArticle']) && !empty($_POST['themeArticle']) && !empty($_POST['langueArticle']) && isset($_POST['visibility']) && !empty($_POST['contenuArticle'])) { //Regarde si le titre ainsi que le contenu n'est pas vide
         $titreArticle = htmlspecialchars($_POST['titreArticle']); //htmlspecialchars convertit tous les caractères éligibles en entités HTML
@@ -14,13 +30,14 @@ if (isset($_POST["ecrireArticle"])) { //Si bouton "ecrire" utilisé, on rempli l
         $langueArticle = htmlspecialchars($_POST['langueArticle']);
         $visibility = htmlspecialchars($_POST['visibility']);
         $contenuArticle = htmlspecialchars($_POST['contenuArticle']);
-        $id_editor = $_SESSION['auth']->id_editor;
 
-        $bdd->query("INSERT INTO news SET id_theme = ?, id_langue = ?, visibility = ?, title_news = ?, date_news = NOW(), text_news = ?, id_editor = ?",  [$themeArticle, $langueArticle, $visibility, $titreArticle, $contenuArticle, $id_editor]); //appel de la fonction query de parametre tableau titre et contenu, de la class Database.php
+        if (!$visibility || $visibility == 1) {
+            $bdd->query("INSERT INTO news SET id_theme = ?, id_langue = ?, visibility = ?, title_news = ?, date_news = NOW(), text_news = ?, id_editor = ?",  [$themeArticle, $langueArticle, $visibility, $titreArticle, $contenuArticle, $id_editor]); //appel de la fonction query de parametre tableau titre et contenu, de la class Database.php
 
-        $session->write('flash', "<p style='color: green;'> L'article à bien été posté à l'adresse : <a href='index.php' title='ici'> ici </a> </p>");
-        header('Location: compte.php');
-        die();
+            $session->write('flash', "<p style='color: green;'> L'article a bien été posté à l'adresse : <a href='index.php' title='ici'> ici </a> </p>");
+            header('Location: compte.php');
+            die();
+        }
     } else {
         echo ("<p style='color: red;'> Veuillez remplir le formulaire article s'il vous plaît. </p>");
     }
@@ -103,6 +120,26 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
             Vous possedez votre compte depuis le : <?= date("d/m/y H:i:s", strtotime($_SESSION["auth"]->dateCreate)); ?>
         </h3>
     </div>
+    <br />
+    <br />
+
+    <center>
+        <form method="POST">
+            <p>Voulez-vous afficher votre mail lors de la publication de vos news ? :</p>
+            <div>
+                <input class="button" type="radio" name="seeMail" value="1" <?php if ($varSeeMail) : ?> checked <?php endif; ?>>
+                <label for="oui">Oui</label>
+
+                <input class="button" type="radio" name="seeMail" value="0" <?php if (!$varSeeMail) : ?> checked <?php endif; ?>>
+                <label for="non">Non</label>
+
+            </div>
+            <br />
+            <div>
+                <button class="info button" type="submit" name="envoyer">Envoyer</button>
+            </div>
+        </form>
+    </center>
     <br />
     <br />
 
@@ -201,22 +238,7 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
         </h3>
         <br />
 
-        <script type="text/javascript" src="./scripts/escapeHtml"></script>
-        <script type="text/javascript">
-            function onColorChange() {
-                var blank = document.getElementById("preview-blank");
-                var theme = document.getElementById("preview-theme");
-                var picker = document.getElementById("color-picker");
-                blank.style.backgroundColor = picker.value;
-                theme.style.backgroundColor = picker.value;
-            }
 
-            function onThemeChange() {
-                var theme = document.getElementById("preview-theme");
-                var title = document.getElementById("theme-title");
-                theme.innerHTML = title.value;
-            }
-        </script>
         <form method="POST">
             <label for="titreTheme">
                 Le titre de votre theme :
@@ -273,6 +295,7 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
     include_once 'inc/footer.php';
     ?>
 
+    <script type="text/javascript" src="scripts/colorPicker.js"></script>
     <script type="text/javascript" src="scripts/toggle.js"></script>
 
 </body>

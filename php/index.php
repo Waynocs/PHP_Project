@@ -95,7 +95,7 @@ if (isset($_POST["theme"]))
 
         <br />
         <h2>
-            Visualisation de tous les news :
+            Visualisation de toutes les news :
         </h2>
 
         <form method="POST">
@@ -148,7 +148,7 @@ if (isset($_POST["theme"]))
                 foreach ($reqNews as $reqNew) :  //On créé une variable clef reqNew servant d'index pour pouvoir afficher le contenu de la BdD new grâce au foreach
                     $reqTheme = $bdd->query("SELECT * FROM theme WHERE id_theme=?", [$reqNew->id_theme])->fetch(); //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
                     $reqLangue = $bdd->query("SELECT * FROM langue WHERE id_langue=?", [$reqNew->id_langue])->fetch();
-                    $reqEditor = $bdd->query("SELECT surname, name, mail_address FROM editor WHERE id_editor=?", [$reqNew->id_editor])->fetch();
+                    $reqEditor = $bdd->query("SELECT * FROM editor WHERE id_editor=?", [$reqNew->id_editor])->fetch();
                 ?>
 
 
@@ -168,11 +168,15 @@ if (isset($_POST["theme"]))
                                     :
                                 </strong>
                                 <?= $reqEditor->surname, " ", $reqEditor->name; ?>
-                                <?php if ($auth->user()) : ?>
-                                    <a href="mailto: <?= $reqEditor->mail_address; ?>">
-                                        <?= $reqEditor->mail_address; ?>
-                                    </a>
-                                <?php endif; ?>
+                                <?php if ($auth->user()) :
+                                    if ($reqEditor->seeMail) : ?>
+                                        <?php if ($reqEditor->seeMail) : ?>
+                                            <a href=" mailto: <?= $reqEditor->mail_address; ?>">
+                                                <?= $reqEditor->mail_address; ?>
+                                            </a>
+                                <?php endif;
+                                    endif;
+                                endif; ?>
                             </p>
                             <p>
                                 <strong>
@@ -227,10 +231,11 @@ if (isset($_POST["theme"]))
 
         ?>
 
-            <h2>
-                Visualisation de tous mes news :
-            </h2>
             <hr />
+            <h2>
+                Visualisation de toutes mes news :
+            </h2>
+
 
             <?php  //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
             $id_editor = $_SESSION["auth"]->id_editor;
@@ -242,7 +247,7 @@ if (isset($_POST["theme"]))
                     foreach ($reqMyNews as $reqMyNew) :  //On créé une variable clef reqNew servant d'index pour pouvoir afficher le contenu de la BdD new grâce au foreach
                         $reqMyTheme = $bdd->query("SELECT * FROM theme WHERE id_theme=?", [$reqMyNew->id_theme])->fetch(); //variable prenant la BdD et appel la fonction query (de la class DataBase pour pouvour sélécionner tous les attributs de la table new)
                         $reqMyLangue = $bdd->query("SELECT * FROM langue WHERE id_langue=?", [$reqMyNew->id_langue])->fetch();
-                        $reqMyEditor = $bdd->query("SELECT surname, name, mail_address FROM editor WHERE id_editor=?", [$reqMyNew->id_editor])->fetch();
+                        $reqMyEditor = $bdd->query("SELECT * FROM editor WHERE id_editor=?", [$reqMyNew->id_editor])->fetch();
                     ?>
 
 
@@ -262,10 +267,12 @@ if (isset($_POST["theme"]))
                                     </strong>
                                     <?= $reqMyEditor->surname, " ", $reqMyEditor->name; ?>
                                     <?php if ($auth->user()) : ?>
-                                        <a href="mailto: <?= $reqMyEditor->mail_address; ?>">
-                                            <?= $reqMyEditor->mail_address; ?>
-                                        </a>
-                                    <?php endif; ?>
+                                        <?php if ($reqEditor->seeMail) : ?>
+                                            <a href="mailto: <?= $reqMyEditor->mail_address; ?>">
+                                                <?= $reqMyEditor->mail_address; ?>
+                                            </a>
+                                    <?php endif;
+                                    endif; ?>
                                 </p>
 
                                 <p>

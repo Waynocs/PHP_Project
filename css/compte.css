@@ -39,3 +39,18 @@
         top: 30%;
     }
 }
+
+.force-light.pop-info>div {
+    background-color: var(--main-light);
+    border: 1px solid var(--main-color);
+    box-shadow: 0 0 .2rem var(--main-color);
+    color: var(--main-black);
+}
+
+#preview-blank {
+    height: 1rem;
+}
+
+#preview-theme {
+    color: var(--main-white);
+}

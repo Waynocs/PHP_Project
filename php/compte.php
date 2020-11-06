@@ -31,8 +31,8 @@ if (isset($_POST["ecrireTheme"])) { //Si bouton "ecrire" utilisé, on rempli la 
     if (!empty($_POST['titreTheme']) && !empty($_POST['descriptionTheme'])) { //Regarde si le titre ainsi que le contenu n'est pas vide
         $titreTheme = htmlspecialchars($_POST['titreTheme']); //htmlspecialchars convertit tous les caractères éligibles en entités HTML
         $descriptionTheme = htmlspecialchars($_POST['descriptionTheme']);
-
-        $bdd->query("INSERT INTO theme SET title = ?, description = ?",  [$titreTheme, $descriptionTheme]); //appel de la fonction query de parametre tableau titre et contenu, de la class Database.php
+        $couleurTheme = substr(htmlspecialchars($_POST['couleurTheme']), 1);
+        $bdd->query("INSERT INTO theme SET title = ?, description = ?, color = ?",  [$titreTheme, $descriptionTheme, $couleurTheme]); //appel de la fonction query de parametre tableau titre et contenu, de la class Database.php
 
         $session->write('flash', "<p style='color: green;'> Le thème à bien été enregistré </p>");
         header('Location: compte.php');
@@ -201,11 +201,40 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
         </h3>
         <br />
 
+        <script type="text/javascript" src="./scripts/escapeHtml"></script>
+        <script type="text/javascript">
+            function onColorChange() {
+                var blank = document.getElementById("preview-blank");
+                var theme = document.getElementById("preview-theme");
+                var picker = document.getElementById("color-picker");
+                blank.style.backgroundColor = picker.value;
+                theme.style.backgroundColor = picker.value;
+            }
+
+            function onThemeChange() {
+                var theme = document.getElementById("preview-theme");
+                var title = document.getElementById("theme-title");
+                theme.innerHTML = title.value;
+            }
+        </script>
         <form method="POST">
             <label for="titreTheme">
                 Le titre de votre theme :
             </label>
-            <input type="text" name="titreTheme" placeholder="Le titre" />
+            <input type="text" onchange="onThemeChange()" id="theme-title" name="titreTheme" placeholder="Le titre" />
+            <br />
+            <br />
+            <label for="titreTheme">
+                La couleur votre theme :
+            </label>
+            <input id="color-picker" type="color" value="#ff0000" name="couleurTheme" onchange="onColorChange()" />
+            <span class="force-light pop-info">
+                ?
+                <div>
+                    <div id="preview-blank" style="background-color: red;"></div>
+                    <span id="preview-theme" style="font-style: italic; background-color: red;padding: .5rem;"></span>
+                </div>
+            </span>
             <br />
             <br />
 
@@ -244,7 +273,7 @@ if (isset($_POST["ecrireLangue"])) { //Si bouton "ecrire" utilisé, on rempli la
     include_once 'inc/footer.php';
     ?>
 
-    <script src="scripts/toggle.js"></script>
+    <script type="text/javascript" src="scripts/toggle.js"></script>
 
 </body>
 

@@ -267,7 +267,7 @@ if (isset($_POST["theme"]))
                                     </strong>
                                     <?= $reqMyEditor->surname, " ", $reqMyEditor->name; ?>
                                     <?php if ($auth->user()) : ?>
-                                        <?php if ($reqEditor->seeMail) : ?>
+                                        <?php if ($reqMyEditor->seeMail) : ?>
                                             <a href="mailto: <?= $reqMyEditor->mail_address; ?>">
                                                 <?= $reqMyEditor->mail_address; ?>
                                             </a>

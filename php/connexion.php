@@ -23,10 +23,10 @@ if (isset($_POST['connexion'])) { //Si bouton connexion validé, la codition est
                 die();
             }
         } else {
-            echo ("<p style='color: red;'> Le mot de passe ou l'identifiant ne correspond pas. </p>");
+            $session->write("flash", "<p style='color: red;'> Le mot de passe ou l'identifiant de correspond pas. </p>");
         }
     } else {
-        echo ("<p style='color: red;'> Veuillez remplir le formulaire s'il vous plaît. </p>");
+        $session->write("flash", "<p style='color: red;'> Veuillez remplir le formulaire s'il vous plaît. </p>");
     }
 }
 ?>
